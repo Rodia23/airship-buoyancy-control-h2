@@ -63,15 +63,15 @@ $^{2}$ \quad Faculty of Industrial Engineering, National University of San Marco
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-Airships represent a low-energy-consumption alternative for long-endurance air transport, surveillance, and heavy-lift cargo operations \cite{ref1,ref2,ref4,ref5}. However, buoyancy management during loading and unloading maneuvers is one of their fundamental operational challenges: when a payload is released in flight, the sudden reduction in mass generates a thrust imbalance that can displace the vehicle by several meters within seconds.
+Airships represent a low-energy-consumption alternative for long-endurance air transport, surveillance, and heavy-lift cargo operations \cite{ref1,ref2}. Current development programs such as the Airlander~10 \cite{ref4} and the Flying Whales LCA60T \cite{ref5} exemplify the renewed industrial interest in this technology for heavy-lift logistics. However, buoyancy management during loading and unloading maneuvers is one of their fundamental operational challenges: when a payload is released in flight, the sudden reduction in mass generates a thrust imbalance that can displace the vehicle by several meters within seconds. The dynamics of suspended-load operations in heavy-lift airships present particular stabilization challenges, as documented in studies on cable-driven payload systems \cite{BenAbdallah2019}, where load oscillations during release maneuvers can critically compromise operational safety.
 
-Traditional methods — venting lifting gas or dropping ballast — reduce autonomy and result in material losses. Active buoyancy control systems based on gas transfer have been proposed \cite{ref2}, but their viability depends critically on the flow rates achievable with available technology.
+Traditional methods — venting lifting gas or dropping ballast — reduce autonomy and result in material losses. Active buoyancy control systems based on gas transfer have been proposed \cite{ref2, Li2007}, but their viability depends critically on the flow rates achievable with available technology.
 
 This work proposes a regenerative H\textsubscript{2} cycle system as a solution to this challenge: instead of venting gas or conventional ballast, the excess buoyancy is neutralized through the controlled combustion of H\textsubscript{2} from the ballonets, converting the lifting gas into liquid water that simultaneously acts as inertial ballast.
 
 The system is validated through numerical simulation on four representative airships — ranging from the Zeppelin NT ($5.6$~t structural mass) to the LZ 129 Hindenburg ($264$~t) — demonstrating that the proposed control scheme guarantees stability within safe margins ($|\Delta h| \leq 5$~m) across all evaluated scenarios.
 
-As a result of the analysis, a scaling paradox emerges: airships with greater inertial mass are \emph{easier} to stabilize, which positions this model as a naturally scalable solution for next-generation heavy-lift platforms. The regenerative cycle also has a non-trivial operational consequence: each maneuver consumes H\textsubscript{2} in a quantifiable amount (${\approx}74.2$~kg per ton released), making the system compatible with green hydrogen supply infrastructure without requiring external ballast or fossil fuel.
+As a result of the analysis, a scaling paradox emerges: airships with greater inertial mass are \emph{easier} to stabilize, which positions this model as a naturally scalable solution for next-generation heavy-lift platforms. The regenerative cycle also has a non-trivial operational consequence: each maneuver consumes H\textsubscript{2} in a quantifiable amount (${\approx}74.2$~kg per ton released), making the system compatible with green hydrogen supply infrastructure \cite{ref3} without requiring external ballast or fossil fuel.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Materials and Methods}
@@ -154,14 +154,14 @@ Solar panel fraction & $f_\text{pan}$ & 0.45 \\
 \subsubsection{Justification of Operational and Control Parameters}
 To ensure the physical viability and industrial applicability of the model, the system parameters were defined based on aerospace regulations and current commercial technology limits (summarized in Table~\ref{tab:parametros}).
 
-\textbf{Flight Dynamics and Control:} The altitude controller was tuned by imposing a strict damping coefficient of $\zeta = 1.35$. An overdamped regime is mandatory in external-load operations (such as long slings or aerial cranes) to prevent overshoots and vertical oscillations that would induce fatigue in cargo cables or the dangerous "pendulum effect" described in VERTREP (\textit{Vertical Replenishment}) manuals \cite{ref7, ref8}. The proportional-derivative controller gains ($K_p = 15$ m$^3$/m and $K_d = 2400$ m$^3 \cdot$s/m) were determined to stabilize the maximum structural inertia without saturating the actuators. A heuristic proactive flow of $\dot{m}_\text{proac} = -10$~kg/s was also incorporated, applied 2 seconds before the release. This preconditioning extracts ${\approx}20$~kg of H\textsubscript{2}, inducing an anticipated lift deficit that absorbs between 25\% and 30\% of the initial upward impulse without compromising the aircraft's altitude. Finally, a drag coefficient of $C_D = 0.5$ was adopted, representative of the vertical displacement of large-volume ellipsoidal bodies in turbulent regimes.
+\textbf{Flight Dynamics and Control:} The altitude controller was tuned by imposing a strict damping coefficient of $\zeta = 1.35$. An overdamped regime is mandatory in external-load operations (such as long slings or aerial cranes) to prevent overshoots and vertical oscillations that would induce fatigue in cargo cables or the dangerous "pendulum effect" described in VERTREP (\textit{Vertical Replenishment}) manuals \cite{ref7, ref8}. The proportional-derivative controller gains ($K_p = 15$ m$^3$/m and $K_d = 2400$ m$^3 \cdot$s/m) were determined to stabilize the maximum structural inertia without saturating the actuators. A heuristic proactive flow of $\dot{m}_\text{proac} = -10$~kg/s was also incorporated, applied 2 seconds before the release. This preconditioning extracts ${\approx}20$~kg of H\textsubscript{2}, inducing an anticipated lift deficit that absorbs between 25\% and 30\% of the initial upward impulse without compromising the aircraft's altitude. The overdamped tuning criterion is consistent with stationkeeping control strategies reported for large high-altitude airships \cite{Schmidt2007}. Finally, a drag coefficient of $C_D = 0.5$ was adopted, representative of the vertical displacement of large-volume ellipsoidal bodies in turbulent regimes \cite{Liao2009}.
 
 \textbf{Safety and Mission Thresholds:} Simulations begin at an altitude of $h_0 = 50$~m, corresponding to the typical hovering altitude out of ground effect (OGE) for aerial cranes. Two stabilization thresholds were established: a strict safety limit of $|\Delta h| \le 5$~m, based on the maximum elongation permitted in operational slings to avoid involuntary lifting of ground equipment; and a precision threshold of $|\Delta h| \le 1$~m, required for structural coupling maneuvers. The vehicle is considered to have reached stabilization ($t_\text{estab}$) when, in addition to meeting the spatial threshold, its residual vertical velocity is below $0.05$~m/s ($0.10$~m/s for lighter airships), a safe kinematic margin for interaction with ground personnel. For the multi-release stress test, an interval of $\Delta t = 30$~s was imposed, simulating a high-intensity logistic cadence (\textit{carpet-dropping}).
 
-\textbf{Thermodynamics and Energy Balance:} To capture the inertia of the gas system, a thermal time constant of $\tau_\text{term} = 35.0$~s was used, a lumped-parameter approximation suitable for modeling thermal inertia under forced convection in large ballonets. Hydrogen is supplied from tanks pressurized to 350~bar, the current standard for heavy mobility. The generator efficiency was set to $\eta_\text{gen} = 0.30$, a conservative lower bound (Brake Thermal Efficiency) that accounts for thermal dilution losses when using atmospheric nitrogen during combustion \cite{ref9}. For the regeneration cycle, commercial PEM electrolyzers were considered with an energy demand of $45$~kWh/kg ($\eta_\text{el} \approx 0.65$) \cite{ref10}. Solar recharging assumes a conservative mean irradiance of $r_\text{ef} = 2.0$~kWh/m$^2$/day, characteristic of coastal zones with high cloud cover, and a panel coverage fraction of $f_\text{pan} = 0.45$, representing the maximum effective area achievable with thin-film solar cells on the upper fuselage curvature.
+\textbf{Thermodynamics and Energy Balance:} To capture the inertia of the gas system, a thermal time constant of $\tau_\text{term} = 35.0$~s was used, a lumped-parameter approximation suitable for modeling thermal inertia under forced convection in large ballonets. Hydrogen is supplied from tanks pressurized to 350~bar, the current standard for heavy mobility. The generator efficiency was set to $\eta_\text{gen} = 0.30$, a conservative lower bound (Brake Thermal Efficiency) that accounts for thermal dilution losses when using atmospheric nitrogen during combustion \cite{ref9}. For the regeneration cycle, commercial PEM electrolyzers were considered with an energy demand of $45$~kWh/kg ($\eta_\text{el} \approx 0.65$), consistent with current commercial technology benchmarks \cite{ref10, Buttler2018, Falcao2020}. Solar recharging assumes a conservative mean irradiance of $r_\text{ef} = 2.0$~kWh/m$^2$/day, characteristic of coastal zones with high cloud cover, and a panel coverage fraction of $f_\text{pan} = 0.45$, representing the maximum effective area achievable with thin-film solar cells on the upper fuselage curvature.
 
 \subsection{Flight Dynamics Modeling}
-The force balance on the airship (Figure~\ref{fig:fuerzas}) is modeled using Newton's Second Law along the vertical axis:
+Following the Newton--Euler vertical dynamics framework established for buoyancy-driven airships \cite{Wu2013, Li2007}, the force balance along the vertical axis is expressed as:
 
 \begin{equation}
 M\,\dot{v} = F_\text{emp} - M\,g - F_\text{arr} 
@@ -218,7 +218,7 @@ M_\text{carga}(t) = M_\text{carga}^\text{ini} - k(t) \cdot m_\text{drop}, \quad 
 where $n$ is the total number of scheduled deliveries. This time-varying nature forces the controller to adapt to different inertias throughout the mission. The time-varying nature of $M(t)$ introduces a non-trivial control challenge: the gains tuned for the initial mass become underdamped at lower masses, generating growing oscillations after consecutive deliveries. The proposed scheme addresses this through two complementary mechanisms: continuous adaptation of the derivative gain and proactive preconditioning prior to each release.
 
 \subsubsection{Adaptive PD Controller and Preconditioning}
-The stabilization scheme combines a feedback Proportional-Derivative (PD) controller with a proactive preconditioning logic. The PD controller tracks a dynamic equilibrium volume $V_\text{eq}(t)$ that is recalculated upon each variation of the mass $M(t)$. To prevent the airship from destabilizing upon losing inertia after consecutive deliveries, the derivative gain is adaptively tuned to maintain a constant damping coefficient $\zeta = 1.35$. This value was set to guarantee a strictly overdamped regime, preventing load oscillations associated with the "pendulum effect" in accordance with external-load operational criteria (VERTREP) \cite{ref7, ref8}:
+The stabilization scheme combines a feedback Proportional-Derivative (PD) controller with a proactive preconditioning logic. The PD controller tracks a dynamic equilibrium volume $V_\text{eq}(t)$ that is recalculated upon each variation of the mass $M(t)$. Gain-scheduling is an established approach for handling the nonlinear, mass-varying dynamics of airships \cite{Azinheira2016}. Following this principle, the derivative gain is adaptively tuned to maintain a constant damping coefficient $\zeta = 1.35$ throughout the unloading sequence. This value was set to guarantee a strictly overdamped regime, preventing load oscillations associated with the "pendulum effect" in accordance with external-load operational criteria (VERTREP) \cite{ref7, ref8}:
 
 \begin{equation}
 K_d(t) = 2\,\zeta\,\sqrt{K_p\,(M_\text{estr} + M_\text{carga}(t))}
@@ -397,7 +397,7 @@ This energy surplus constitutes a direct input for the electrolysis bank, optimi
 \section{Discussion}
 
 \subsection{Solar Regeneration and Operational Autonomy}
-The capacity to recover consumed hydrogen is modeled as a function of the available daily irradiance and the useful surface area of the vehicle. Daily regeneration is calculated using:
+Solar-powered electrolysis for onboard hydrogen regeneration has been studied as an autonomy-extending mechanism in stratospheric airship platforms \cite{Zhang2019}. Building on this approach, the capacity to recover consumed hydrogen is modeled as a function of the available daily irradiance and the useful surface area of the vehicle. Daily regeneration is calculated using:
 
 \begin{equation}
 \dot{m}_{H_2,\text{reg}} = \frac{r_\text{ef}\cdot f_\text{pan}\cdot A_\text{total}\cdot\eta_\text{el}}{E_{H_2,\text{el}}}
@@ -442,7 +442,7 @@ Burning H\textsubscript{2} at rates of up to 50~kg/s releases thermal power on t
 \subsection{Generator Efficiency and Simplifications}
 A consistent value of $\eta_\text{gen}=0.30$ is used throughout. High-efficiency PEM cells ($\eta\approx0.55$) would reduce H\textsubscript{2} consumption and improve the energy balance; this effect can be directly evaluated through Eq.~\eqref{eq:mh2quem}, which is proportional to $1/\eta_\text{gen}$.
 
-Condensation and electrolysis are modeled independently and are not coupled to the main flight dynamics. Thermal preconditioning ($\Delta T=0.2$~K) has a negligible effect on buoyancy; the real benefit comes from the proactive H\textsubscript{2} consumption prior to release. These simplifications do not affect the validity of the $\dotmmax$ sweep or the theoretical analysis.
+Condensation and electrolysis are modeled independently and are not coupled to the main flight dynamics. Thermal preconditioning ($\Delta T=0.2$~K) has a negligible effect on buoyancy; the real benefit comes from the proactive H\textsubscript{2} consumption prior to release. Added-mass effects, which can represent up to 15--20\% of the structural inertia in lateral motion \cite{Li2007}, are neglected in the vertical axis model; given the low accelerations involved in the controlled stabilization regime, this simplification does not affect the qualitative validity of the sweep results. These simplifications do not affect the validity of the $\dotmmax$ sweep or the theoretical analysis.
 
 \subsection{Future Work}
 The values found constitute direct design specifications: the condenser must provide $\geq2{,}512$~kW, the generator unit between 5 and 50~kg/s, and the panels must cover 45\% of the surface area. The thermomechanical sizing of each subsystem to satisfy these specifications, predictive control (MPC), experimental validation, and the definition of the \emph{ideal airship} — the set of characteristics that simultaneously minimizes all requirements — constitute the natural lines of continuation of this work.
@@ -504,6 +504,57 @@ $\zeta$           & Adaptive damping coefficient \\
 \bibitem{ref9} Dhyani, V., and Subramanian, K. A. "Control of backfire and NOx emission reduction in a hydrogen fueled multi-cylinder spark ignition engine using cooled EGR and water injection strategies", \textit{International Journal of Hydrogen Energy}, vol. 44, no. 12, pp. 6287-6298, 2019.
 \bibitem{ref10} IRENA. \textit{Green Hydrogen Cost Reduction: Scaling up Electrolysers to Meet the 1.5°C Climate Goal}. International Renewable Energy Agency, Abu Dhabi, 2020.
 \bibitem{ref11} NASA. \textit{RS-25 Engine: Space Shuttle Main Engine (SSME) — Technical Manual}, NASA Marshall Space Flight Center, Huntsville, AL, 2016. [Online]. \url{https://www.nasa.gov/exploration/systems/sls/rs25.html}
+
+\bibitem{Li2007}
+Li, Y.; Nahon, M. Modeling and simulation of airship dynamics.
+\textit{J. Guid. Control Dyn.} \textbf{2007}, \textit{30}(6), 1691--1700.
+\url{https://doi.org/10.2514/1.29061}
+
+\bibitem{Wu2013}
+Wu, X.; Moog, C.H.; Márquez-Martínez, L.A.; Hu, Y. Full model of a buoyancy-driven
+airship and its control in the vertical plane.
+\textit{Aerosp. Sci. Technol.} \textbf{2013}, \textit{26}(1), 138--152.
+\url{https://doi.org/10.1016/j.ast.2012.02.022}
+
+\bibitem{BenAbdallah2019}
+Ben Abdallah, F.; Azouz, N.; Beji, L.; Abichou, A. Modeling of a heavy-lift airship
+carrying a payload by a cable-driven parallel manipulator.
+\textit{Int. J. Adv. Robot. Syst.} \textbf{2019}, \textit{16}(4), 1--17.
+\url{https://doi.org/10.1177/1729881419861769}
+
+\bibitem{Schmidt2007}
+Schmidt, D.K. Modeling and near-space stationkeeping control of a large high-altitude
+airship.
+\textit{J. Guid. Control Dyn.} \textbf{2007}, \textit{30}(2), 540--547.
+\url{https://doi.org/10.2514/1.24865}
+
+\bibitem{Liao2009}
+Liao, L.; Pasternak, I. A review of airship structural research and development.
+\textit{Prog. Aerosp. Sci.} \textbf{2009}, \textit{45}(4--5), 83--96.
+\url{https://doi.org/10.1016/j.paerosci.2009.03.001}
+
+\bibitem{Azinheira2016}
+Moutinho, A.; Azinheira, J.R.; de Paiva, E.C.; Bueno, S.S. Airship robust
+path-tracking: A tutorial on airship modelling and gain-scheduling control design.
+\textit{Control Eng. Pract.} \textbf{2016}, \textit{50}, 22--36.
+\url{https://doi.org/10.1016/j.conengprac.2016.02.009}
+
+\bibitem{Buttler2018}
+Buttler, A.; Spliethoff, H. Current status of water electrolysis for energy storage,
+grid balancing and sector coupling via power-to-gas and power-to-liquids: A review.
+\textit{Renew. Sustain. Energy Rev.} \textbf{2018}, \textit{82}, 2440--2454.
+\url{https://doi.org/10.1016/j.rser.2017.09.003}
+
+\bibitem{Falcao2020}
+Falcão, D.S.; Pinto, A.M.F.R. A review on PEM electrolyzer modelling: Guidelines for beginners.
+\textit{J. Clean. Prod.} \textbf{2020}, \textit{261}, 121184.
+\url{https://doi.org/10.1016/j.jclepro.2020.121184}
+
+\bibitem{Zhang2019}
+Zhang, L.; Li, J.; Jiang, Y.; Du, H.; Zhu, W.; Lv, M. Analysis of attitude planning
+and energy balance of stratospheric airship.
+\textit{Energy} \textbf{2019}, \textit{183}, 1089--1103.
+\url{https://doi.org/10.1016/j.energy.2019.06.148}
 \end{thebibliography}
 
 \end{document}
