@@ -1,0 +1,51 @@
+\section{Adaptive PD Controller: Full Implementation}
+\label{app:control}
+
+\subsection*{Gain Scheduling}
+
+The derivative gain is adaptively tuned to maintain a constant damping coefficient $\zeta = 1.35$ throughout the unloading sequence:
+
+\begin{equation}
+K_d(t) = 2\,\zeta\,\sqrt{\frac{K_p\,M_\text{eff}(t)}{\rho_\text{air}(h)\,g}}, \qquad
+M_\text{eff}(t) = M_\text{str} + M_\text{load}(t) + m_\text{water}(t)
+\label{eq:kd_app}
+\end{equation}
+
+where $M_\text{eff}$ includes the structural mass, remaining payload, and accumulated water ballast, but excludes $m_{H_2}$ (gas mass contributes to buoyancy rather than inertial damping). This expression is derived by imposing that the damping coefficient $\zeta$ of the linearized system remains constant under mass variations; without this adaptation, the step-wise loss of payload and concurrent gain of water ballast would progressively alter the dynamic regime.
+
+\subsection*{Feedback Flow Law}
+
+The mass flow rate commanded by the feedback controller is:
+
+\begin{equation}
+\dot{m}_\text{PD}(t) = K_m\bigl(V_\text{eq}(t) + K_p\,e_h - K_d(t)\,v - V_{H_2}\bigr)
+\label{eq:mpd_app}
+\end{equation}
+
+where $e_h = h_0 - h$ is the altitude error. The gain $K_m$ operates in two sequential phases: an \emph{emergency phase} ($K_m = 60$~kg/s/m\textsuperscript{3}) provides rapid post-drop response until $m_{H_2}$ reaches the new equilibrium target $m_{H_2,\text{eq}} = M_\text{eff}/(\rho_0/\rho_{H_2}-1)$; a \emph{trim phase} ($K_m = 0.5$~kg/s/m\textsuperscript{3}) then guides smooth settling to the new equilibrium. The emergency phase ensures aggressive compensation of the initial perturbation; the reduced trim gain prevents oscillation buildup and resets automatically at each subsequent drop event.
+
+\subsection*{Anticipatory Preconditioning}
+
+To mitigate the initial acceleration peak, the system incorporates an anticipatory extraction pulse. Two seconds before the scheduled release instant ($t_\text{drop}$), the system temporarily suspends the PD control and injects a constant negative flow $\dot{m}_\text{prec} = -10$~kg/s. Extracting this flow for 2~seconds induces a proactive lift deficit sufficient to partially absorb the perturbation before release. With atmospheric O\textsubscript{2} as oxidizer, the absorbed fraction is governed by the effective specific lift factor $L_\text{eff}$ (Eq.~\eqref{eq:cubic_prec}), which combines buoyancy loss and absorbed O\textsubscript{2} mass:
+
+\begin{equation}
+\frac{\Delta F}{\Delta F_\text{pert}} = L_\text{eff}\cdot\frac{|\dot{m}_\text{prec}|\,t_\text{prec}}{m_\text{load}} \approx 44.8\%
+\label{eq:alpha_prec_B}
+\end{equation}
+
+for the nominal parameters of Table~\ref{tab:parametros}. The buoyancy-only contribution accounts for $(\rho_\text{air}/\rho_{H_2}) \times \ldots \approx 28.8\%$; the remaining ${\approx}16\%$ is provided by the O\textsubscript{2} mass absorbed and retained as water ballast during the 2-second preconditioning window. The anticipation time $t_\text{anticip} = 2.0$~s is selected such that the resulting preconditioning sinking depth (Eq.~\eqref{eq:cubic_prec}) satisfies $D_\text{lim} \approx 0.027$~m for the Pathfinder~3 --- negligible relative to the post-drop safety threshold ($|\Delta h|_\text{max} = 5$~m) --- while providing the maximum pre-compensation consistent with this constraint.
+
+\subsection*{Hybrid Control Law}
+
+The hybrid control law with saturation is defined as:
+
+\begin{equation}
+\dot{m}_{H_2}(t) =
+\begin{cases}
+\dot{m}_\text{prec} & \text{if } t \in [t_\text{drop}-2\,\text{s},\; t_\text{drop}) \\
+\text{sat}_{\dotmmax}\!\left(\dot{m}_\text{PD}(t)\right) & \text{otherwise}
+\end{cases}
+\label{eq:hybrid_app}
+\end{equation}
+
+This saturation at $\pm\dotmmax$ is the critical design parameter: if the hybrid scheme demands more flow than the system can provide, the vertical displacement exceeds the operational safety threshold. The proactive pulse qualitatively transforms this requirement: instead of requiring the actuator to compensate for an already-initiated upward impulse, it anticipates the perturbation by reducing net buoyancy \emph{before} the release. The PD controller then acts on a system that is already partially in descent, drastically reducing the reactive flow required.

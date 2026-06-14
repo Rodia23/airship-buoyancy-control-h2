@@ -58,17 +58,10 @@ m_descomp     = 2.0        # [kg/s]   Tasa de descompresión: flujo tanque → b
 
 
 # =============================================================================
-# TÉRMICA — preacondicionamiento de ballonets
+# TÉRMICA — gas isotérmico
 # =============================================================================
 
-T1            = 281.0      # [K]   Temperatura inicial del H2 (~8°C)
-T2            = 281.2      # [K]   Temperatura objetivo del calentamiento (+0.2°C)
-                            # NOTA: ΔT = 0.2 K → efecto de flotabilidad casi nulo.
-                            #   El efecto de control principal viene del flujo proactivo.
-
-tau_term      = 35.0       # [s]   Constante de tiempo térmica del calentamiento de ballonets
-                            # Reemplaza h_conv, n_ballonets, T_pared, A_superficie
-                            # Ref: 10–120 s según tamaño del sistema
+T1            = 281.0      # [K]   Temperatura del H2 (isotérmico; ≈ T_ambiente a h0)
 
 
 # =============================================================================
@@ -80,7 +73,6 @@ rend_gen      = 0.30       # [—]   Rendimiento del generador eléctrico de H2 
                             # NOTA: unificado a 30% (valor del código).
                             #   El artículo declarará este valor explícitamente.
 
-perdidas      = 0.30       # [—]   Fracción de pérdidas térmicas en el calentamiento
 
 
 # =============================================================================
@@ -104,10 +96,10 @@ Kp              = 15      # [m³/m]      Ganancia proporcional
 Kd              = 2400     # [m³·s/m]    Ganancia derivativa
 K_mass_control  = 60       # [kg/s/m³]   Conversión volumen→flujo másico
 
-max_flujo_H2    = 30      # [kg/s]   Límite teórico del controlador (no físicamente realizable)
-                            # ADVERTENCIA: solo define el techo del controlador PD.
-                            #   Para un generador real usar 0.1–5 kg/s.
-                            #   El barrido paramétrico evalúa el rango completo.
+max_flujo_H2    = 30      # [kg/s]   Límite del controlador para simulaciones base y multi-drop.
+                            # Ref: el barrido paramétrico (t3_barrido.py) evalúa 0.5–1000 kg/s.
+                            #   ṁmin resultante: 5 kg/s (Hindenburg/Pathfinder 3) a 25 kg/s (Zeppelin NT).
+                            #   Rango industrialmente viable con quemadores H2 comerciales.
 
 V_delta_max     = 1000     # [m³]    Saturación del volumen comandado
 
@@ -117,16 +109,12 @@ V_delta_max     = 1000     # [m³]    Saturación del volumen comandado
 # =============================================================================
 
 dm_H2_proactivo = -10      # [kg/s]   Consumo de H2 antes de la liberación (proactivo)
-cooling_factor  = 12       # [—]      Factor de aceleración del enfriamiento proactivo
-t_mantener      = 2.0      # [s]      Duración de la fase de mantenimiento térmico
 
 
 # =============================================================================
 # SIMULACIÓN
 # =============================================================================
 
-acortar_tiempos = False    # Si True, escala tiempos térmicos por escala_tiempo
-escala_tiempo   = 0.2
 dt_max          = 0.05     # [s]   Paso máximo del integrador ODE
 t_post_liberacion = 400    # [s]   Duración de la sim. después de liberar la carga
 

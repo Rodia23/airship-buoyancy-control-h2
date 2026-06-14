@@ -1,0 +1,183 @@
+% =============================================================================
+% Appendix A — Complete Derivations: Proactive Hydrogen Preconditioning
+% Included via \input{apendice_sections} after \appendix in airships_h2.tex
+% NOTE: subsection titles have no manual "A.x:" prefix — MDPI cls numbers them.
+% =============================================================================
+
+\section{Complete Derivations: Proactive Hydrogen Preconditioning}
+\label{sec:appendixA}
+
+\subsection{The Cubic Formula for Pre-Drop Sinking}
+\label{appx:cubic_formula}
+
+\subsubsection{Physical Setup and Mass Definition}
+
+Consider an airship at equilibrium altitude $h_0$ carrying a payload of mass $m_{\text{load}}$.
+The lifting gas volume is $V_0$ with density $\rho_{H_2}$.
+The ambient air density at altitude is $\rho_{\text{air}}$.
+
+The total instantaneous inertial mass of the vehicle, $M_{\text{total}}$, includes the structural mass, the payload, and the mass of the hydrogen gas currently in the envelope:
+\begin{equation}
+  M_{\text{total}} = M_{\text{str}} + m_{\text{load}} + m_{H_2}
+\end{equation}
+
+At equilibrium (before payload release or gas extraction), the buoyant force exactly balances the total weight:
+\begin{equation}
+  F_{\text{buoy},0} = \rho_{\text{air}} \cdot g \cdot V_0 = M_{\text{total}} \cdot g = W_0
+\end{equation}
+
+\subsubsection{Dynamics of Hydrogen Combustion and Water Retention}
+
+During the proactive preconditioning phase, hydrogen is transferred from the buoyancy envelope to the on-board generator at a constant mass flow rate $|\dot{m}|$.
+In the generator, this hydrogen reacts with atmospheric oxygen to produce liquid water, which is retained on board as ballast.
+
+The stoichiometric ratio dictates that 1~kg of H$_2$ reacts with approximately 8~kg of atmospheric O$_2$ to produce 9~kg of H$_2$O.
+Therefore, while the envelope loses H$_2$ mass at a rate $|\dot{m}|$, the vehicle as a whole \textbf{gains} mass from the ingested oxygen at a rate $8 \cdot |\dot{m}|$.
+
+The volume of the lifting gas as a function of time decreases linearly:
+\begin{equation}
+  V_{H_2}(t) = V_0 - \frac{|\dot{m}|}{\rho_{H_2}} \cdot t
+\end{equation}
+
+The total weight of the airship as a function of time \textbf{increases}:
+\begin{equation}
+  W(t) = \left(M_{\text{total}} + 8 \cdot |\dot{m}| \cdot t\right) \cdot g
+\end{equation}
+
+where $M_{\text{total}}$ is the initial total mass at $t = 0$ (before preconditioning begins, so
+$m_{\text{water}}(0) = 0$). The increment $8|\dot{m}|t$ represents the net atmospheric O$_2$ mass
+absorbed; this is identically recovered in the dynamic simulation notation of
+Section~\ref{sec:methods} as $m_\text{water}(t) - |\dot{m}|t = 9|\dot{m}|t - |\dot{m}|t = 8|\dot{m}|t$,
+where $m_\text{water}(t) = 9|\dot{m}|t$ is the cumulative water ballast and $|\dot{m}|t$ is the
+H$_2$ mass removed from the envelope.
+
+The net vertical force $\Delta F(t)$ acting on the airship is the difference between the instantaneous buoyancy and the instantaneous weight.
+\textit{Remark}: Aerodynamic drag is neglected throughout the maneuver.
+During the preconditioning phase, drag opposes the downward velocity, reducing
+the actual sinking below Eq.~(\ref{eq:cubic}). During the post-release ascent,
+drag opposes the upward velocity, reducing the residual buoyancy excursion and
+therefore the reactive flow demand. In both phases the drag contribution is
+favorable; the drag-free model provides a conservative upper bound on actuator
+requirements in each phase independently.
+\begin{equation}
+  \Delta F(t) = \rho_{\text{air}} \cdot g \cdot V_{H_2}(t) - W(t)
+\end{equation}
+
+Substituting the time-dependent expressions:
+\begin{equation}
+  \Delta F(t) = \rho_{\text{air}} \cdot g \cdot \left( V_0 - \frac{|\dot{m}|}{\rho_{H_2}} \cdot t \right) - \left( M_{\text{total}} \cdot g + 8 \cdot |\dot{m}| \cdot g \cdot t \right)
+\end{equation}
+
+Since the initial equilibrium condition dictates that $\rho_{\text{air}} \cdot g \cdot V_0 = M_{\text{total}} \cdot g$, these terms cancel out:
+\begin{equation}
+  \Delta F(t) = - \left( \frac{\rho_{\text{air}}}{\rho_{H_2}} + 8 \right) \cdot g \cdot |\dot{m}| \cdot t = -L_\text{eff} \cdot g \cdot |\dot{m}| \cdot t
+\end{equation}
+
+where $L_{\text{eff}} = \rho_{\text{air}}/\rho_{H_2} + 8$ is the effective specific lift factor introduced in Eq.~\eqref{eq:cubic_prec}.
+
+\subsubsection{The Cubic Formula}
+
+Applying Newton's second law, the vertical acceleration $a(t) \approx \Delta F(t)/M_{\text{total}}$ under the approximation $8|\dot{m}|t \ll M_{\text{total}}$ (valid for $S \equiv 8|\dot{m}|t/M_{\text{total}} < 0.3$, satisfied for typical operational timescales):
+
+\begin{equation}
+  a(t) \approx - \frac{L_{\text{eff}} \cdot g \cdot |\dot{m}|}{M_{\text{total}}} \cdot t
+\end{equation}
+
+Integrating twice with initial conditions $v(0)=0$, $\Delta h(0)=0$:
+
+\begin{equation}
+  \boxed{|\Delta h(t)| = \frac{L_\text{eff}\,g\,|\dot{m}|}{6\,M_\text{total}}\,t^3}
+  \label{eq:cubic}
+\end{equation}
+
+The cubic dependence arises because a constant flow rate produces a linear reduction in gas volume and a linear increase in ballast mass, both creating a linear growth in net downward force. Integrating this linear force twice yields a cubic position trajectory.
+
+%%% -------------------------------------------------------------------
+\subsection{Maximum Allowed Anticipation Time}
+\label{appx:tmax_derivation}
+
+Given that the airship cannot sink more than $D_{\max}$ before the payload is released, and defining $|\dot{m}| = \eta \cdot \dot{m}_{\text{max}}$, setting $|\Delta h(t_{\max})| = D_{\max}$ and solving:
+
+\begin{equation}
+  \boxed{t_{\max}(\eta, D_{\max}) = \left(\frac{6 \cdot M_{\text{total}} \cdot D_{\max}}{L_{\text{eff}} \cdot g \cdot \eta \cdot \dot{m}_{\text{max}}}\right)^{1/3}}
+\end{equation}
+
+%%% -------------------------------------------------------------------
+\subsection{Optimal Sinking Distance for Perfect Compensation}
+\label{appx:dstar_derivation}
+
+Perfect compensation ($\alpha = 100\%$) occurs when the net downward force generated during preconditioning exactly equals the weight of the payload to be released.
+The mass of hydrogen that must be burned to neutralize a payload $m_{\text{load}}$ is:
+\begin{equation}
+  \Delta m_{\text{pre}}^* = \frac{m_{\text{load}}}{L_{\text{eff}}}
+\end{equation}
+
+Setting $t_{\text{anticip}} = \tau \cdot t_{\max}$ and equating to $\Delta m_{\text{pre}}^*$, then cubing and solving for $D_{\max}^*$:
+
+\begin{equation}
+  \boxed{D_{\max}^* = \frac{m_{\text{load}}^3 \cdot g}{6 \cdot M_{\text{total}} \cdot L_{\text{eff}}^2 \cdot \eta^2 \cdot \dot{m}_{\text{max}}^2 \cdot \tau^3}}
+\end{equation}
+
+%%% -------------------------------------------------------------------
+\subsection{Compensation Fraction as Function of Sinking}
+\label{appx:alpha_derivation}
+
+The compensation fraction $\alpha$ is defined as the mass actually burned divided by the mass required for perfect compensation:
+\begin{equation}
+  \alpha = \frac{\Delta m_{\text{pre}}}{m_{\text{load}} / L_{\text{eff}}}
+\end{equation}
+
+Dividing the expression for $\Delta m_{\text{pre}}$ at arbitrary depth $D_{\max}$ by the expression at perfect compensation $D_{\max}^*$, all parameters except the distances cancel:
+
+\begin{equation}
+  \boxed{\alpha(D_{\max}) = \left(\frac{D_{\max}}{D_{\max}^*}\right)^{1/3}}
+\end{equation}
+
+%%% -------------------------------------------------------------------
+\subsection{Minimum Flow Requirement for Viability}
+\label{appx:mmin_viability}
+
+If the operational sinking is limited to $D_{\text{limit}}$ and a target compensation $\alpha_{\text{target}}$ is required, substituting $D_{\text{limit}} = \alpha_{\text{target}}^3 \cdot D_{\max}^*$ into the expression for $D_{\max}^*$ and solving for $\dot{m}_{\text{max}}$:
+
+\begin{equation}
+  \boxed{\dot{m}_{\text{min}} = \frac{m_{\text{load}}^{3/2} \cdot g^{1/2} \cdot \alpha_{\text{target}}^{3/2}}{\sqrt{6 \cdot M_{\text{total}} \cdot L_{\text{eff}}^2 \cdot D_{\text{limit}}} \cdot \eta \cdot \tau^{3/2}}}
+\end{equation}
+
+For perfect compensation ($\alpha_{\text{target}} = 1$):
+\begin{equation}
+  \boxed{\dot{m}_{\text{min}}^{\text{pre-comp}} = \frac{m_{\text{load}}^{3/2} \cdot \sqrt{g}}{\eta \cdot \tau^{3/2} \cdot \sqrt{6 \cdot M_{\text{total}} \cdot L_{\text{eff}}^2 \cdot D_{\text{limit}}}}}
+\end{equation}
+
+\textbf{Key result}: for a fixed operational sinking limit $D_{\text{limit}}$, the minimum required flow scales inversely with the square root of the total inertial mass, recovering the scaling paradox of Eq.~\eqref{eq:mmin_final}:
+\begin{equation}
+  \dot{m}_{\text{min}} \propto \frac{m_{\text{load}}^{3/2}}{\sqrt{M_{\text{total}}}}
+\end{equation}
+
+%%% -------------------------------------------------------------------
+\subsection{System-Level Actuator Optimization (Minimax Formulation)}
+\label{appx:system_optimization}
+
+Since both the proactive preconditioning and the reactive post-drop stabilization share the same combustion hardware, the installed capacity $\dot{m}_{\text{max}}$ must satisfy the peak demand of the more intensive phase. From Appendix~\ref{appx:mmin_viability}, the proactive demand scales as $\dot{m}_{\text{pre}}(\alpha) = K_{\text{pre}} \cdot \alpha^{3/2}$ (monotonically increasing), while the reactive demand scales as $\dot{m}_{\text{post}}(\alpha) = \dot{m}_{\text{post},0} \cdot (1-\alpha)$ (monotonically decreasing). The optimal installed capacity minimizes the peak of both:
+
+\begin{equation}
+  \dot{m}_{H_2}^* = \min_{\alpha \in [0,1]} \Bigl(\max\bigl(\dot{m}_{\text{pre}}(\alpha),\,\dot{m}_{\text{post}}(\alpha)\bigr)\Bigr)
+\end{equation}
+
+The minimum occurs at the intersection $\dot{m}_{\text{pre}}(\alpha^*) = \dot{m}_{\text{post}}(\alpha^*)$. Introducing the non-dimensional system constant:
+\begin{equation}
+  C = \frac{\dot{m}_{\text{post},0} \cdot \eta \cdot \tau^{3/2} \cdot \sqrt{6 \cdot M_{\text{total}} \cdot L_{\text{eff}}^2 \cdot D_{\text{limit}}}}{m_{\text{load}}^{3/2} \cdot \sqrt{g}}
+\end{equation}
+
+the change of variables $x = \sqrt{\alpha^*}$ transforms the fixed-point equation into the depressed cubic $x^3 + C x^2 - C = 0$, which has exactly one strictly positive real root by Descartes' Rule of Signs. The exact closed-form solution depends on the discriminant $\Delta = C^2/4 - C^4/27$:
+
+\textbf{High-inertia regime} ($\Delta > 0$, i.e., $C < 3\sqrt{3}/2$): unique real root via Cardano's method:
+\begin{equation}
+  \alpha^* = \left( \sqrt[3]{ \frac{C}{2} - \frac{C^3}{27} + \frac{C}{2}\sqrt{1 - \frac{4C^2}{27}} } + \sqrt[3]{ \frac{C}{2} - \frac{C^3}{27} - \frac{C}{2}\sqrt{1 - \frac{4C^2}{27}} } - \frac{C}{3} \right)^2
+\end{equation}
+
+\textbf{Low-inertia regime} ($\Delta \leq 0$, i.e., $C \geq 3\sqrt{3}/2$): three real roots (\textit{Casus Irreducibilis}); the unique physical root via Vieta's trigonometric substitution ($k=0$):
+\begin{equation}
+  \alpha^* = \left( \frac{2C}{3} \cos\!\left( \frac{1}{3} \arccos\!\left( \frac{27 - 2C^2}{2C^2} \right) \right) - \frac{C}{3} \right)^2
+\end{equation}
+
+These closed-form expressions eliminate the need for numerical root-finding in the actuator sizing phase and directly yield the minimax-optimal preconditioning fraction $\alpha^*$ and installed capacity $\dot{m}_{H_2}^*$ for any given airship geometry and payload configuration.

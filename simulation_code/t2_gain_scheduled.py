@@ -26,6 +26,9 @@ def correr(n_entregas=1, toneladas_por_drop=1, graficar=True):
     rho_H2_ini = p.P_atmos / (p.R_H2 * p.T1)
     m_H2_ini = (p.m_estructura + p.m_carga) / (rho_h0 / rho_H2_ini - 1)
 
+    fase2 = [False]       # latch: True en modo trim, False en modo emergencia
+    fase2_at_drop = [0]  # drops_hechos cuando se activó fase2 (para reset en cada nuevo drop)
+
     ultimo_drop_anunciado = -1
 
     print("\n" + "="*60)
@@ -35,15 +38,16 @@ def correr(n_entregas=1, toneladas_por_drop=1, graficar=True):
 
     def dinamica(t, y):
         nonlocal ultimo_drop_anunciado
-        v, h, m_H2, T_H2, Q_con, Q_gen = y
-        m_H2 = max(m_H2, 0.1)
+        v, h, m_H2, T_H2, Q_con, Q_gen, m_agua = y
+        m_H2   = max(m_H2,   0.1)
+        m_agua = max(m_agua, 0.0)
 
         # Lógica de liberación escalonada 
         drops_hechos = int(t // intervalo)
         drops_hechos = min(drops_hechos, n_entregas)
         
         m_carga_actual = p.m_carga - (drops_hechos * (toneladas_por_drop * 1000.0))
-        M_total_nave = p.m_estructura + m_carga_actual + m_H2
+        M_total_nave = p.m_estructura + m_carga_actual + m_H2 + m_agua
 
         if drops_hechos > ultimo_drop_anunciado:
             print(f"[t={t:6.1f}s] DROP #{drops_hechos} ejecutado. Masa restante: {m_carga_actual/1000:4.1f} t")
@@ -51,16 +55,33 @@ def correr(n_entregas=1, toneladas_por_drop=1, graficar=True):
 
         rho_aire = p.rho_aire_std * np.exp(-h / p.H_escala)
         V_H2 = (m_H2 * p.R_H2 * T_H2) / p.P_atmos
-        V_eq = ((p.m_estructura + m_carga_actual) * p.R_H2 * p.T1) / (p.P_atmos * (rho_h0 / rho_H2_ini - 1))
 
-        # Controlador PD [cite: 13]
-        # Kd derivado del lazo completo: ω_n²=K_mass·Kp·(ρ·g/M), Kd=2ζ·M·ω_n/(ρ·g)
-        zeta = 1.35
-        Kd_auto = 2 * zeta * np.sqrt(p.Kp * (p.m_estructura + m_carga_actual) / (rho_aire * p.g))
+        # M_eff: inertial mass for controller tuning (structure + cargo + water ballast)
+        # m_agua included: accumulated water adds weight → V_eq must compensate
+        # m_H2 excluded: gas mass is not structural inertia for Kd tuning
+        zeta  = 1.35
+        M_eff = p.m_estructura + m_carga_actual + m_agua
+        V_eq  = (M_eff * p.R_H2 * p.T1) / (p.P_atmos * (rho_h0 / rho_H2_ini - 1))
+        Kd_auto = 2 * zeta * np.sqrt(p.Kp * M_eff / (rho_aire * p.g))
         V_cmd = V_eq + p.Kp * (p.h0 - h) - Kd_auto * v
         V_error = V_cmd - V_H2
-        dm = p.K_mass_control * V_error
-        
+
+        # Ganancia programada por masa de H₂ [cite: 13]
+        # Fase 1 (K_mass=60): respuesta rápida por drop hasta completar ajuste de flotabilidad
+        # Fase 2 (K_mass=0.5 < ρ_H₂/Δt): trim suave, se resetea en cada nuevo drop
+        if fase2[0] and drops_hechos > fase2_at_drop[0]:  # nuevo drop → volver a fase 1
+            fase2[0] = False
+        if not fase2[0] and drops_hechos > 0:
+            carga_restante = (n_entregas - drops_hechos) * toneladas_por_drop * 1000.0
+            m_H2_eq_ahora = (p.m_estructura + carga_restante + m_agua) / (rho_h0 / rho_H2_ini - 1)
+            if m_H2 <= m_H2_eq_ahora:
+                fase2[0] = True
+                fase2_at_drop[0] = drops_hechos
+        K_mass_eff = 0.5 if fase2[0] else p.K_mass_control
+        dm = K_mass_eff * V_error
+        if drops_hechos == 0:
+            dm = 0.0  # sin control antes del primer pulso proactivo
+
         # Pulso proactivo (ajustado para drop en 1s)
         t_anticipo = min(2.0, intervalo)
         if (intervalo - t_anticipo) <= (t % intervalo) < intervalo and drops_hechos < n_entregas:
@@ -73,14 +94,15 @@ def correr(n_entregas=1, toneladas_por_drop=1, graficar=True):
         F_arr = 0.5 * p.Cd * p.Area * rho_aire * v**2 * np.sign(v)
         dv = (F_emp - M_total_nave * p.g - F_arr) / M_total_nave
 
-        dQgen = abs(dm) * p.Q_comb_H2 * p.rend_gen if dm < -0.05 else 0
-        
-        return [dv, v, dm, (p.T1 - T_H2)/5.0, 0, dQgen]
+        dQgen  = abs(dm) * p.Q_comb_H2 * p.rend_gen if dm < -0.05 else 0
+        d_agua = -9.0 * min(dm, 0.0)   # 1 kg H₂ + 8 kg O₂ → 9 kg H₂O (lastre)
+
+        return [dv, v, dm, (p.T1 - T_H2)/5.0, 0, dQgen, d_agua]
 
     # Integración RK45 
-    y0 = [0.0, p.h0, m_H2_ini, p.T1, 0.0, 0.0]
-    sol = solve_ivp(dinamica, [0, t_final], y0, method='RK45', max_step=0.1)
-    
+    y0 = [0.0, p.h0, m_H2_ini, p.T1, 0.0, 0.0, 0.0]
+    sol = solve_ivp(dinamica, [0, t_final], y0, method='RK45', max_step=0.05)
+
     t, v, h, m_H2, Q_gen = sol.t, sol.y[0], sol.y[1], sol.y[2], sol.y[5]
     a = np.gradient(v, t)
     dm_real = np.gradient(m_H2, t)
@@ -180,7 +202,7 @@ def _graficar_mision_base_estetica(t, h, v, a, dm, m_h2, E, p, t_lib=1.0):
     ax_energia.set_xlabel('Time [s] (Logarithmic Scale)', weight='bold')
     ax_energia.grid(True, which='both', alpha=0.2)
 
-    plt.savefig(f"mision_base_final_logx.png", dpi=200, bbox_inches='tight')
+    plt.savefig(f"no_optimo_mision_base_final_logx.png", dpi=200, bbox_inches='tight')
     plt.show()
 
 def _graficar_super_mision(t, h, v, a, dm, m_h2, E, p, n, intervalo, tons_p):
@@ -217,12 +239,23 @@ def _graficar_super_mision(t, h, v, a, dm, m_h2, E, p, n, intervalo, tons_p):
 
     # 2. Velocidad y Aceleración
     ax_v = axes[1]
-    ax_v.plot(t, v, COL_VEL)
+    l_v, = ax_v.plot(t, v, COL_VEL, lw=LW_MASA)
     ax_v.set_ylabel("Velocity [m/s]", color=COL_VEL, weight='bold')
 
     ax_a = ax_v.twinx()
-    ax_a.plot(t, a, COL_ACC, alpha=0.3, ls='-.')
+    l_a, = ax_a.plot(t, a, COL_ACC, lw=2.0, ls='--')
     ax_a.set_ylabel("Acceleration [m/s²]", color=COL_ACC, weight='bold')
+
+    # Truco de espacio visual: rango aceleración x2 → su pico ocupa la mitad
+    # de la altura visual que la velocidad; cero compartido en el centro
+    vl = max(abs(ax_v.get_ylim()[0]), abs(ax_v.get_ylim()[1]))
+    al = max(abs(ax_a.get_ylim()[0]), abs(ax_a.get_ylim()[1]))
+    ax_v.set_ylim(-vl * 1.1, vl * 1.1)
+    ax_a.set_ylim(-al * 2.2, al * 2.2)
+
+    # Leyenda unificada
+    ax_v.legend(handles=[l_v, l_a], labels=['Velocity [m/s]', 'Accel. [m/s²]'],
+                loc='upper right', fontsize=9, framealpha=0.8)
 
     # 3. Flujo H2
     axes[2].plot(t, dm, COL_FLUJO, lw=LW_FLUJO)
@@ -242,7 +275,7 @@ def _graficar_super_mision(t, h, v, a, dm, m_h2, E, p, n, intervalo, tons_p):
     # Ajuste automático de márgenes para que los labels de los bordes no se corten
     fig.tight_layout()
 
-    plt.savefig(f"mision_multi_{n}drops.png", dpi=150)
+    plt.savefig(f"no_optimo_mision_multi_{n}drops.png", dpi=150)
     plt.show()
 class _Params:
     def __init__(self, overrides=None):
@@ -253,4 +286,4 @@ class _Params:
             for k, v in overrides.items(): setattr(self, k, v)
 
 if __name__ == '__main__':
-    correr(n_entregas=1, toneladas_por_drop=1, graficar=True)
+    correr(n_entregas=4, toneladas_por_drop=1, graficar=True)
