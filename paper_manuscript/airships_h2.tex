@@ -67,7 +67,7 @@ $^{2}$ \quad Faculty of Industrial Engineering, National University of San Marco
 \corres{Correspondence: aespinozal@uni.pe}
 
 %=================================================================
-\abstract{Heavy-lift airships develop a positive-buoyancy surplus upon payload release that, if unmanaged, drives an uncontrolled ascent. This paper derives actuator sizing laws for a closed regenerative cycle that neutralises this surplus: H\textsubscript{2} is combusted from the ballonets to reduce net lift; the condensed water is retained as inertial ballast and recovered by on-board solar electrolysis. Three specifications are obtained in closed form and validated across four platforms spanning $5.6$--$264$~t: the minimum combustion rate, which obeys $\dotmmin \propto M_\text{total}^{-1/2}$---a \emph{scaling paradox} in which larger craft demand lower specific flow rates; the minimum condenser capacity $Q_\text{cond,min} \approx 1{,}512$~kW for a 10-min condensation window; and the minimax-optimal installed rate $\dotmstar$, resolved via a depressed cubic equation. Substituting atmospheric air for pure oxygen reduces the descent-phase H\textsubscript{2} budget by ${\approx}36\%$ relative to onboard O\textsubscript{2} (${\approx}44.7$ vs.\ ${\approx}70$~kg/tonne). For the representative platform, anticipatory H\textsubscript{2} extraction of up to ${\approx}4$~s before each release lowers $\dotmstar$ to $5.21$~kg/s---an $83\%$ reduction versus a $30$~kg/s baseline---and three of the four evaluated platforms achieve energetic self-sufficiency under Lima irradiance conditions.}
+\abstract{Heavy-lift airships develop a positive-buoyancy surplus upon payload release that, if unmanaged, drives an uncontrolled ascent. This paper derives actuator sizing laws for a closed regenerative cycle that neutralizes this surplus: H\textsubscript{2} is combusted from the ballonets to reduce net lift; the condensed water is retained as inertial ballast and recovered by on-board solar electrolysis. Three specifications are obtained in closed form and validated across four platforms spanning $5.6$--$264$~t: the minimum combustion rate, which obeys $\dotmmin \propto M_\text{total}^{-1/2}$---a \emph{scaling paradox} in which larger craft demand lower specific flow rates; the minimum condenser capacity $Q_\text{cond,min} \approx 1{,}512$~kW for a 10-min condensation window; and the minimax-optimal installed rate $\dotmstar$, resolved via a depressed cubic equation. Substituting atmospheric air for pure oxygen reduces the descent-phase H\textsubscript{2} budget by ${\approx}36\%$ relative to onboard O\textsubscript{2} (${\approx}44.7$ vs.\ ${\approx}70$~kg/tonne). For the representative platform, anticipatory H\textsubscript{2} extraction of up to ${\approx}4$~s before each release lowers $\dotmstar$ to $5.21$~kg/s---an $83\%$ reduction versus a $30$~kg/s baseline. Furthermore, a comprehensive mass-budget analysis using 2025 aerospace benchmarks substantiates the hardware feasibility of the proposed cycle: the integrated system requires below 53\% of the commercial payload capacity for large-scale platforms, and three of the four evaluated airships achieve energetic self-sufficiency under average irradiance conditions.}
 
 \keyword{airship; buoyancy control; regenerative hydrogen; payload release; scaling paradox; anticipatory preconditioning; actuator sizing; solar regeneration}
 
@@ -97,14 +97,14 @@ alternative but carry prohibitive structural mass penalties that have prevented 
 implementations do not recover the lifting gas consumed during the maneuver. Closed-cycle buoyancy
 management has been explored through helium compression \cite{Pasternak2015} and regenerative fuel
 cells \cite{Sun2024}, but no existing approach integrates dynamic post-release stabilization with
-\addedR{on-board H\textsubscript{2} regeneration within a hydrogen combustion--condensation--electrolysis cycle}.}
+on-board H\textsubscript{2} regeneration within a hydrogen combustion--condensation--electrolysis cycle.}
 
-\added{This work presents such a cycle. Post-release buoyancy surplus is neutralised by combusting
+\added{This work presents such a cycle. Post-release buoyancy surplus is neutralized by combusting
 H\textsubscript{2} from the ballonets: the lifting gas is converted into liquid water, which
 simultaneously acts as inertial ballast and reduces the displaced volume. The water is subsequently
-recovered as H\textsubscript{2} by on-board solar electrolysis, \addedR{regenerating the consumed lifting gas for subsequent missions}. Substituting atmospheric air for pure oxygen as the oxidiser reduces the
+recovered as H\textsubscript{2} by on-board solar electrolysis, regenerating the consumed lifting gas for subsequent missions. Substituting atmospheric air for pure oxygen as the oxidizer reduces the
 descent-phase H\textsubscript{2} demand by ${\approx}36\%$ per delivery cycle (${\approx}44.7$~kg vs.\ ${\approx}70$~kg per tonne with onboard O\textsubscript{2}), providing an
-additional degree of freedom for mission profile optimisation.}
+additional degree of freedom for mission profile optimization.}
 
 \added{A key enabler of the cycle's actuator efficiency is an anticipatory preconditioning strategy.
 Feedforward pre-compensation has been established for suspended-load systems subject to predictable
@@ -121,10 +121,7 @@ the minimum combustion rate $\dotmmin$, which scales as $M_\text{total}^{-1/2}$ 
 counterintuitive result termed the \emph{scaling paradox}; the minimum condenser thermal capacity
 $Q_\text{cond,min}$; and the minimax-optimal installed flow rate $\dotmstar$, resolved via
 Cardano's method or Vieta's trigonometric substitution depending on the inertia regime
-(Appendix~A). The analysis shows that larger airships are intrinsically easier to stabilise, that
-the resulting flow rates constitute directly actionable combustion subsystem specifications, and
-that three of the four evaluated platforms achieve energetic self-sufficiency under Lima irradiance
-conditions.}
+(Appendix~\ref{sec:appendixA}). The analysis shows that larger airships are intrinsically easier to stabilize, and that the resulting flow rates constitute directly actionable combustion subsystem specifications. Crucially, a subsystem-by-subsystem mass budget supports the practical engineering feasibility of the system: the hardware envelope operates well within the commercial payload limits of large-scale platforms, and three of the four evaluated airships achieve energetic self-sufficiency under Lima irradiance conditions.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Materials and Methods}
@@ -139,6 +136,8 @@ The regenerative cycle comprises four operationally independent phases, coordina
 \caption{Regenerative H\textsubscript{2} cycle for stabilization after payload release. The blue and orange blocks represent the ascent and descent actuators respectively, both acting on the central state of the system: the H\textsubscript{2} in the ballonets. O\textsubscript{2} is extracted from the surrounding atmosphere, constituting the only external flow in the cycle. Solar regeneration extends operational autonomy but does not participate in the active maneuver.}
 \label{fig:ciclo}
 \end{figure}
+
+All fluid-handling and structural subsystems operate in direct or indirect contact with gaseous H\textsubscript{2} and are specified for H\textsubscript{2} service throughout; the envelope and ballonet material architecture is detailed in Appendix~\ref{app:envelope_materials}.
 
 \subsubsection{Ascent Phase}
 H\textsubscript{2} stored at high pressure (350~bar) is decompressed into the ballonets through the distribution manifold. This inflow increases the displaced volume and, consequently, the net aerostatic thrust governed by Archimedes' Principle.
@@ -158,7 +157,7 @@ Post-release stabilization constitutes the central mechanism of the proposed con
 \label{eq:combustion}
 \end{equation}
 generating water vapor with mass ratio $m_{H_2O}/m_{H_2} = 9$. When atmospheric air is used as the oxidizer, N\textsubscript{2} and trace gases act as thermal diluents without participating in the reaction; this effect is captured in the effective efficiency $\eta_\mathrm{gen} = 0.30$ adopted in the analysis.
-\item \textbf{Progressive condensation:} The generated vapor passes through a heat exchanger where it transitions to liquid phase, depositing in the storage tanks. The combustion-condensation cycle achieves an effective volumetric reduction of approximately 1:1300 (calculated stoichiometrically: $\rho_{H_2} \approx 0.083$~kg/m\textsuperscript{3} at ambient conditions yields ${\approx}0.75$~L of liquid water per m\textsuperscript{3} of gas) --- each m\textsuperscript{3} of gaseous H\textsubscript{2} extracted from the ballonets is consolidated into less than 1~liter of liquid water in the tanks ---. Since aerostatic thrust depends on the volume of displaced gas rather than the total mass of the vehicle, this conversion effectively reduces net thrust: the water occupies negligible volume compared to the gas it replaces, simultaneously acting as additional ballast.
+\item \textbf{Progressive condensation:} The generated vapor passes through a heat exchanger where it transitions to liquid phase, depositing in the storage tanks. The combustion-condensation cycle achieves an effective volumetric reduction of approximately 1:1300 (calculated stoichiometrically: $\rho_{H_2} \approx 0.083$~kg/m\textsuperscript{3} at ambient conditions yields ${\approx}0.75$~L of liquid water per m\textsuperscript{3} of gas) --- each m\textsuperscript{3} of gaseous H\textsubscript{2} extracted from the ballonets is consolidated into less than 1~liter of liquid water in the tanks. Since aerostatic thrust depends on the volume of displaced gas rather than the total mass of the vehicle, this conversion effectively reduces net thrust: the water occupies negligible volume compared to the gas it replaces, simultaneously acting as additional ballast.
 \end{enumerate}
 
 \begin{figure}[H]
@@ -206,14 +205,14 @@ Electrolysis energy demand & $E_{H_2,\text{el}}$ & 45.0 kWh/kg \\
 Solar panel fraction & $f_\text{pan}$ & 0.45 \\
 Solar irradiance & $r_\text{ef}$ & 2.0 kWh/m$^2$/day \\
 \bottomrule
-\multicolumn{3}{@{}p{\linewidth}}{$^{a}$ Nominal initial value; recalculated adaptively at each drop via Eq.~\eqref{eq:kd_app} (Appendix~B).} \\
+\multicolumn{3}{@{}p{\linewidth}}{$^{a}$ Nominal initial value; recalculated adaptively at each drop via Eq.~\eqref{eq:kd_app} (Appendix~\ref{app:control}).} \\
 \end{tabular}}
 \end{table}
 
 \subsubsection{Justification of Operational and Control Parameters}
 To ensure the physical viability and industrial applicability of the model, the system parameters were defined based on aerospace regulations and current commercial technology limits (summarized in Table~\ref{tab:parametros}).
 
-\textbf{Flight Dynamics and Control:} The altitude controller was tuned by imposing a strict damping coefficient of $\zeta = 1.35$. An overdamped regime is mandatory in external-load operations (such as long slings or aerial cranes) to prevent overshoots and vertical oscillations that would induce fatigue in cargo cables or the dangerous "pendulum effect" described in VERTREP (\textit{Vertical Replenishment}) manuals \cite{ref7, ref8}. The proportional-derivative controller gains ($K_p = 15$ m$^3$/m and $K_d = 2400$ m$^3 \cdot$s/m as nominal initial value) were determined to stabilize the maximum structural inertia without saturating the actuators; $K_d$ is subsequently recalculated at each drop event via Eq.~\eqref{eq:kd_app} (Appendix~B) to maintain $\zeta = 1.35$ throughout the unloading sequence. A heuristic proactive flow of $\dot{m}_\text{prec} = -10$~kg/s was also incorporated, applied 2 seconds before the release. This preconditioning extracts ${\approx}20$~kg of H\textsubscript{2} (as demonstrated numerically in Section~\ref{sec:results}), inducing an anticipated lift deficit that absorbs ${\approx}44.8\%$ of the initial upward impulse (Eq.~\eqref{eq:alpha_prec}; buoyancy reduction ${\approx}28.8\%$ plus O\textsubscript{2} ballast ${\approx}16\%$) without compromising the airship's altitude. The overdamped tuning criterion is consistent with stationkeeping control strategies reported for large high-altitude airships \cite{Schmidt2007}. Finally, a drag coefficient of $C_D = 0.5$ was adopted, representative of the vertical displacement of large-volume ellipsoidal bodies in turbulent regimes \cite{ref2, Liao2009}. \added{A proportional-derivative structure is selected over integral or state-feedback alternatives for two reasons: (i) the aerostatic system has no persistent steady-state disturbance --- the H\textsubscript{2} mass in the ballonets acts as a natural integrator, eliminating altitude error without an explicit I term; and (ii) adaptive gain scheduling handles the system nonlinearity without requiring the full state observer demanded by LQR formulations.}
+\textbf{Flight Dynamics and Control:} The altitude controller was tuned by imposing a strict damping coefficient of $\zeta = 1.35$. An overdamped regime is mandatory in external-load operations (such as long slings or aerial cranes) to prevent overshoots and vertical oscillations that would induce fatigue in cargo cables or the dangerous "pendulum effect" described in VERTREP (\textit{Vertical Replenishment}) manuals \cite{ref7, ref8}. The proportional-derivative controller gains ($K_p = 15$ m$^3$/m and $K_d = 2400$ m$^3 \cdot$s/m as nominal initial value) were determined to stabilize the maximum structural inertia without saturating the actuators; $K_d$ is subsequently recalculated at each drop event via Eq.~\eqref{eq:kd_app} (Appendix~\ref{app:control}) to maintain $\zeta = 1.35$ throughout the unloading sequence. A heuristic proactive flow of $\dot{m}_\text{prec} = -10$~kg/s was also incorporated, applied 2 seconds before the release. This preconditioning extracts ${\approx}20$~kg of H\textsubscript{2} (as demonstrated numerically in Section~\ref{sec:results}), inducing an anticipated lift deficit that absorbs ${\approx}44.8\%$ of the initial upward impulse (Eq.~\eqref{eq:alpha_prec}; buoyancy reduction ${\approx}28.8\%$ plus O\textsubscript{2} ballast ${\approx}16\%$) without compromising the airship's altitude. The overdamped tuning criterion is consistent with stationkeeping control strategies reported for large high-altitude airships \cite{Schmidt2007}. Finally, a drag coefficient of $C_D = 0.5$ was adopted, representative of the vertical displacement of large-volume ellipsoidal bodies in turbulent regimes \cite{ref2, Liao2009}. \added{A proportional-derivative structure is selected over integral or state-feedback alternatives for two reasons: (i) the aerostatic system has no persistent steady-state disturbance --- the H\textsubscript{2} mass in the ballonets acts as a natural integrator, eliminating altitude error without an explicit I term; and (ii) adaptive gain scheduling handles the system nonlinearity without requiring the full state observer demanded by LQR formulations.}
 
 \textbf{Safety and Mission Thresholds:} Simulations begin at an altitude of $h_0 = 50$~m, the typical OGE hovering altitude for aerial crane operations \cite{ref7}. Two stabilization thresholds were established: a strict safety limit of $|\Delta h| \le 5$~m, based on the maximum elongation permitted in operational slings to avoid involuntary lifting of ground equipment; and a precision threshold of $|\Delta h| \le 1$~m, required for structural coupling maneuvers. The vehicle is considered to have reached stabilization ($t_\text{stab}$) when, in addition to meeting the spatial threshold, its residual vertical velocity is below $0.05$~m/s ($0.10$~m/s for lighter airships), a safe kinematic margin for interaction with ground personnel \cite{ref7}. For the multi-release stress test, an interval of $\Delta t = 30$~s was imposed, simulating a high-intensity logistic cadence (colloquially referred to as \textit{carpet-dropping}).
 
@@ -222,7 +221,7 @@ To ensure the physical viability and industrial applicability of the model, the 
 
 \subsection{Model Assumptions and Simplifications}
 
-\added{H$_2$ in the ballonets is modeled as an ideal gas (Eq.~\eqref{eq:gas_ideal}), valid for the pressure and temperature ranges considered. Atmospheric O\textsubscript{2} absorption during combustion is explicitly modeled as a dynamic ballast state $m_\text{water}(t)$ with stoichiometric rate $\dot{m}_\text{water} = -9\min(\dotmH,0)$; this state participates in the force balance and the equilibrium volume calculation $V_\text{eq}$ throughout the simulation. Condensation and electrolysis are treated as decoupled from the flight dynamics, with their timescales evaluated in post-processing (Section~\ref{sec:balance}). The control parameters $\dot{m}_\text{prec}$, $K_p$, $K_d$, and $K_m$ are design values selected through simulation-based tuning to satisfy the overdamped criterion ($\zeta = 1.35$; see Section~\ref{sec:params}). Each model component is grounded in a validated framework: the Newton--Euler dynamics follow Li~\&~Nahon \cite{Li2007}, validated against wind-tunnel data for airship platforms; the lifting gas is treated as isothermal at $T_1$, consistent with the short maneuver timescale ($O(10)$~s) relative to the convective equilibration of large gas envelopes; and the gain-scheduling strategy follows Moutinho et al.\ \cite{Azinheira2016}, applied and validated on real airship platforms. Internal consistency is further confirmed by the agreement between the simulated $\dotmmin$ values and the analytical scaling law (Eq.~\eqref{eq:mmin_final}): three of four platforms agree within 6\% of the analytically predicted value (Hindenburg: 2\%, Flying Whales: 3\%, Pathfinder~3: 6\%); the Zeppelin~NT achieves a value 25\% below the analytical purely-reactive bound, consistent with the greater preconditioning benefit at $\varepsilon = 0.176$.}
+\added{H$_2$ in the ballonets is modeled as an ideal gas (Eq.~\eqref{eq:gas_ideal}), valid for the pressure and temperature ranges considered. Atmospheric O\textsubscript{2} absorption during combustion is explicitly modeled as a dynamic ballast state $m_\text{water}(t)$ with stoichiometric rate $\dot{m}_\text{water} = -9\min(\dotmH,0)$; this state participates in the force balance and the equilibrium volume calculation $V_\text{eq}$ throughout the simulation. Condensation and electrolysis are treated as decoupled from the flight dynamics, with their timescales evaluated in post-processing (Section~\ref{sec:balance}). The control parameters $\dot{m}_\text{prec}$, $K_p$, $K_d$, and $K_m$ are design values selected through simulation-based tuning to satisfy the overdamped criterion ($\zeta = 1.35$; see Section~\ref{sec:params}). Each model component is grounded in a validated framework: the Newton--Euler dynamics follow Li~\&~Nahon \cite{Li2007}, validated against wind-tunnel data for airship platforms; the lifting gas is treated as isothermal at $T_1$, consistent with the short maneuver timescale ($O(10)$~s) relative to the convective equilibration of large gas envelopes; and the gain-scheduling strategy follows Moutinho et al.\ \cite{Azinheira2016}, applied and validated on real airship platforms. Internal consistency is further confirmed by the agreement between the simulated $\dotmmin$ values and the analytical scaling law (Eq.~\eqref{eq:mmin_final}): three of four platforms agree within 6\% of the analytically predicted value (Hindenburg: 2\%, Flying Whales: 3\%, Pathfinder~3: 6\%); the Zeppelin~NT achieves a value 25\% below the analytical purely-reactive bound, consistent with the greater preconditioning benefit at $\varepsilon = 0.140$.}
 
 \subsection{Flight Dynamics Modeling}
 Following the Newton--Euler vertical dynamics framework established for buoyancy-driven airships \cite{Wu2013, Li2007}, the force balance along the vertical axis is expressed as (Fig.~\ref{fig:liberacion}):
@@ -255,10 +254,10 @@ V_{H_2} = \frac{m_{H_2}\,R_{H_2}\,T_1}{P_\text{atm}}
 \label{eq:gas_ideal}
 \end{equation}
 
-where $T_1 = 293$~K is the isothermal gas temperature (temperature deviations during $O(10)$~s maneuvers are negligible; see Section~\ref{sec:params}). The aerodynamic drag force limits the ascent velocity:
+where $T_1 = 288$~K is the isothermal gas temperature (ISA sea-level standard; temperature deviations during $O(10)$~s maneuvers are negligible; see Section~\ref{sec:params}). The aerodynamic drag force limits the ascent velocity:
 
 \begin{equation}
-F_\text{drag} = \tfrac{1}{2}\,C_D\,A\,\rho_\text{air}(h)\,v^2\,\mathrm{sgn}(v)
+F_\text{drag} = \tfrac{1}{2}\,C_D\,A_\text{front}\,\rho_\text{air}(h)\,v^2\,\mathrm{sgn}(v)
 \label{eq:arrastre}
 \end{equation}
 
@@ -279,21 +278,21 @@ where $n$ is the total number of scheduled deliveries. This time-varying nature 
 \subsubsection{Adaptive PD Controller and Preconditioning}
 Purely reactive buoyancy control --- where the actuator responds only after the perturbation has been initiated --- imposes a fundamental constraint on actuator sizing. Upon payload release, the net upward perturbation $\Delta F = m_\text{load}\,g$ acts on the vehicle immediately; the available response time before the vertical displacement exceeds the safety threshold $h_\text{max}$ is bounded by $\tau_\text{ctrl} \approx \sqrt{2\,h_\text{max}\,M_\text{total}/(m_\text{load}\,g)}$ (Eq.~\eqref{eq:tau}). For the smallest evaluated platform (Zeppelin NT, $M_\text{total} \approx 6.6$~t), this window is approximately 2.6~s. A purely reactive controller must compensate the full perturbation within this interval, implying minimum flow rates of ${\approx}27$~kg/s (Eq.~\eqref{eq:mmin_final}) --- at the upper boundary of current industrial H\textsubscript{2} combustion capacity. The hybrid scheme proposed here addresses this constraint by transforming the problem structure \emph{before} the perturbation occurs, following the anticipatory feedforward principle established for suspended-load systems subject to predictable mass events \cite{Kowsari2024}.
 
-The stabilization scheme combines a feedback Proportional-Derivative (PD) controller with a proactive preconditioning logic. The PD controller tracks a dynamic equilibrium volume $V_\text{eq}(t)$ recalculated at each mass variation. Following the gain-scheduling approach of Moutinho et al.\ \cite{Azinheira2016}, the derivative gain is adaptively tuned to maintain a constant damping coefficient $\zeta = 1.35$ throughout the unloading sequence, guaranteeing a strictly overdamped regime in accordance with VERTREP external-load operational criteria \cite{ref7, ref8}. The complete gain expressions and two-phase flow logic are provided in Appendix~B.
+The stabilization scheme combines a feedback Proportional-Derivative (PD) controller with a proactive preconditioning logic. The PD controller tracks a dynamic equilibrium volume $V_\text{eq}(t)$ recalculated at each mass variation. Following the gain-scheduling approach of Moutinho et al.\ \cite{Azinheira2016}, the derivative gain is adaptively tuned to maintain a constant damping coefficient $\zeta = 1.35$ throughout the unloading sequence, guaranteeing a strictly overdamped regime in accordance with VERTREP external-load operational criteria \cite{ref7, ref8}. The complete gain expressions and two-phase flow logic are provided in Appendix~\ref{app:control}.
 
-To mitigate the initial acceleration peak, the system incorporates an anticipatory extraction pulse. Two seconds before the scheduled release instant ($t_\text{drop}$), the system temporarily suspends the PD control and injects a constant negative flow. For the large-scale case studies presented in this work, this value is set to $\dot{m}_\text{prec} = -10$~kg/s. Extracting this flow for 2~seconds induces a proactive lift deficit sufficient to partially absorb the perturbation before release.
+To mitigate the initial acceleration peak, the system incorporates an anticipatory extraction pulse. Two seconds before the scheduled release instant ($t_\text{drop}$), the system temporarily suspends the PD control and injects a baseline constant negative flow of $\dot{m}_\text{prec} = -10$~kg/s for the large-scale case studies presented in this work. Extracting this flow for 2~seconds induces a proactive lift deficit sufficient to partially absorb the perturbation before release.
 With atmospheric O\textsubscript{2} as oxidizer, the absorbed fraction is governed by the effective specific lift factor $L_\text{eff}$ (Eq.~\eqref{eq:cubic_prec}), which combines buoyancy loss and absorbed O\textsubscript{2} mass:
 \begin{equation}
-\frac{\Delta F}{\Delta F_\text{pert}} = L_\text{eff}\cdot\frac{|\dot{m}_\text{prec}|\,t_\text{prec}}{m_\text{load}} \approx 44.8\%
+\frac{\Delta F}{\Delta F_\text{pert}} = L_\text{eff}\cdot\frac{|\dot{m}_\text{prec}|\,t_\text{anticip}}{m_\text{load}} \approx 44.8\%
 \label{eq:alpha_prec}
 \end{equation}
-for the nominal parameters of Table~\ref{tab:parametros}. The buoyancy-only contribution accounts for $(\rho_\text{air}/\rho_{H_2}) \times \ldots \approx 28.8\%$; the remaining ${\approx}16\%$ is provided by the O\textsubscript{2} mass absorbed and retained as water ballast during the 2-second preconditioning window. The anticipation time $t_\text{anticip} = 2.0$~s is selected such that the resulting preconditioning sinking depth (Eq.~\eqref{eq:cubic_prec}) satisfies $|\Delta h(t_\text{anticip})| \approx 0.027$~m for the Pathfinder~3 --- negligible relative to the post-drop safety threshold ($|\Delta h|_\text{max} = 5$~m) --- while remaining well within the operational bound $D_\text{lim} = 0.10$~m adopted for the minimax optimization (Table~\ref{tab:parametros}).
+for the nominal parameters of Table~\ref{tab:parametros}. The buoyancy-only contribution $(\rho_\text{air}/\rho_{H_2}) \cdot |\dot{m}_\text{prec}|\,t_\text{anticip}/m_\text{load}$ accounts for $\approx 28.8\%$; the remaining ${\approx}16\%$ is provided by the O\textsubscript{2} mass absorbed and retained as water ballast during the 2-second preconditioning window. The anticipation time $t_\text{anticip} = 2.0$~s is selected such that the resulting preconditioning sinking depth (Eq.~\eqref{eq:cubic_prec}) satisfies $|\Delta h(t_\text{anticip})| \approx 0.027$~m for the Pathfinder~3 --- negligible relative to the post-drop safety threshold ($|\Delta h|_\text{max} = 5$~m) --- while remaining well within the operational bound $D_\text{lim} = 0.10$~m adopted for the minimax optimization (Table~\ref{tab:parametros}).
 
 The hybrid control law with saturation is defined as:
 \begin{equation}
 \dot{m}_{H_2}(t) =
 \begin{cases}
-\dot{m}_\text{prec} & \text{if } t \in [t_\text{drop}-2\,\text{s},\; t_\text{drop}) \\
+\dot{m}_\text{prec} & \text{if } t \in [t_\text{drop}-t_\text{anticip},\; t_\text{drop}) \\
 \text{sat}_{\dotmmax}\!\left(\dot{m}_\text{PD}(t)\right) & \text{otherwise}
 \end{cases}
 \end{equation}
@@ -314,7 +313,7 @@ From the linearized dynamics at the equilibrium point ($h_0$, $T_1$, $P_\text{at
 where $M_\text{total} - m_\text{load} \approx M_\text{total}$ has been applied under the
 assumption $\varepsilon = m_\text{load}/M_\text{total} \ll 1$. This holds well for three
 platforms ($\varepsilon \leq 0.010$, Table~\ref{tab:dirigibles}); for the Zeppelin~NT
-($\varepsilon = 0.176$), the approximation introduces a ${\sim}9\%$ underestimate of
+($\varepsilon = 0.140$), the approximation introduces a ${\sim}7\%$ underestimate of
 $\dotmmin$, acceptable for the purposes of this lower-bound derivation.
 
 Imposing that the actuator compensates $\Delta F$ within $\tau_\text{ctrl}$:
@@ -330,7 +329,7 @@ The result is counterintuitive: $\dotmmin$ \textbf{decreases} with $M_\text{tota
 \subsection{Analytical Bound Under Hybrid Preconditioning}
 \label{sec:hybrid_bound}
 
-\added{The reactive lower bound of Section~\ref{sec:theoretical} assumes the actuator responds exclusively \emph{after} the perturbation has occurred. In the hybrid scheme, the proactive extraction pulse transforms the problem before the release: H\textsubscript{2} exits the ballonets while the vehicle simultaneously absorbs atmospheric O\textsubscript{2} for combustion, yielding a net downward force that grows linearly in time. Applying Newton's second law to this forcing and integrating twice yields a cubic displacement profile (Appendix~A):}
+\added{The reactive lower bound of Section~\ref{sec:theoretical} assumes the actuator responds exclusively \emph{after} the perturbation has occurred. In the hybrid scheme, the proactive extraction pulse transforms the problem before the release: H\textsubscript{2} exits the ballonets while the vehicle simultaneously absorbs atmospheric O\textsubscript{2} for combustion, yielding a net downward force that grows linearly in time. Applying Newton's second law to this forcing and integrating twice yields a cubic displacement profile (Appendix~\ref{sec:appendixA}):}
 
 \begin{equation}
 |\Delta h(t)| = \frac{L_\text{eff}\,g\,|\dot{m}|}{6\,M_\text{total}}\,t^3, \qquad
@@ -340,14 +339,14 @@ L_\text{eff} = \frac{\rho_\text{air}}{\rho_{H_2}} + 8
 
 \added{where $L_\text{eff}$ is the effective specific lift factor that accounts for both the lost buoyancy and the atmospheric O\textsubscript{2} mass absorbed during combustion ($8$~kg per kg of H\textsubscript{2} consumed, from stoichiometry). The cubic exponent arises because a constant extraction rate produces a linearly growing net force, which integrates twice to a position profile cubic in time.}
 
-\added{Since the preconditioning and post-release stabilization phases share the same combustion hardware, the installed actuator capacity $\dotmmax$ must satisfy the peak demand of whichever phase is more intensive. The optimal distribution of the compensation burden between both phases is formulated as a minimax problem (Appendix~A):}
+\added{Since the preconditioning and post-release stabilization phases share the same combustion hardware, the installed actuator capacity $\dotmmax$ must satisfy the peak demand of whichever phase is more intensive. The optimal distribution of the compensation burden between both phases is formulated as a minimax problem (Appendix~\ref{sec:appendixA}):}
 
 \begin{equation}
 \dotmstar = \min_{\alpha \in [0,1]} \Bigl(\max\bigl(\dot{m}_\text{pre}(\alpha),\;\dot{m}_\text{post}(\alpha)\bigr)\Bigr)
 \label{eq:minimax}
 \end{equation}
 
-\added{where $\alpha$ is the proactive compensation fraction, $\dot{m}_\text{pre}(\alpha) \propto \alpha^{3/2}$ is monotonically increasing, and $\dot{m}_\text{post}(\alpha) \propto (1-\alpha)$ is monotonically decreasing. The global minimum of the peak demand occurs at their intersection $\alpha^*$, which reduces to a depressed cubic polynomial with a unique physical root. This root is resolved in closed form via Cardano's method in the high-inertia regime ($\Delta > 0$) and Vieta's trigonometric substitution in the low-inertia regime ($\Delta \leq 0$) --- full derivations in Appendix~A. The resulting minimum required flow preserves the $M_\text{total}^{-1/2}$ scaling of Eq.~\eqref{eq:mmin_final}:}
+\added{where $\alpha$ is the proactive compensation fraction, $\dot{m}_\text{pre}(\alpha) \propto \alpha^{3/2}$ is monotonically increasing, and $\dot{m}_\text{post}(\alpha) \propto (1-\alpha)$ is monotonically decreasing. The global minimum of the peak demand occurs at their intersection $\alpha^*$, which reduces to a depressed cubic polynomial with a unique physical root. This root is resolved in closed form via Cardano's method in the high-inertia regime ($\Delta > 0$) and Vieta's trigonometric substitution in the low-inertia regime ($\Delta \leq 0$) --- full derivations in Appendix~\ref{sec:appendixA}. The resulting minimum required flow preserves the $M_\text{total}^{-1/2}$ scaling of Eq.~\eqref{eq:mmin_final}:}
 
 \begin{equation}
 \dotmstar \propto \frac{m_\text{load}^{3/2}}{\sqrt{M_\text{total}}}
@@ -359,7 +358,7 @@ L_\text{eff} = \frac{\rho_\text{air}}{\rho_{H_2}} + 8
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{apendice_dlim_flujo_001.png}
-\caption{Minimax-optimal H\textsubscript{2} combustion rate $\dotmstar$ as a function of the maximum allowed preconditioning depth $D_\text{lim}$ (Eq.~\eqref{eq:minimax}; derivations in Appendix~A). Each curve corresponds to one evaluated airship. The $M_\text{total}^{-1/2}$ scaling is directly visible: larger platforms achieve lower installed capacity requirements at every $D_\text{lim}$. The right boundary ($D_\text{lim} = 5$~m) coincides with the operational safety threshold $h_\text{max}$; the working point of the numerical simulations (Section~\ref{sec:results}) lies in the low-$D_\text{lim}$ region of each curve.}
+\caption{Minimax-optimal H\textsubscript{2} combustion rate $\dotmstar$ as a function of the maximum allowed preconditioning depth $D_\text{lim}$ (Eq.~\eqref{eq:minimax}; derivations in Appendix~\ref{sec:appendixA}). Each curve corresponds to one evaluated airship. The $M_\text{total}^{-1/2}$ scaling is directly visible: larger platforms achieve lower installed capacity requirements at every $D_\text{lim}$. The right boundary ($D_\text{lim} = 5$~m) coincides with the operational safety threshold $h_\text{max}$; the working point of the numerical simulations (Section~\ref{sec:results}) lies in the low-$D_\text{lim}$ region of each curve.}
 \label{fig:dlim_flujo}
 \end{figure}
 
@@ -374,20 +373,20 @@ Four airships are evaluated with common parameters: $m_\text{load}=1000$~kg, $h_
 
 \begin{table}[H]
 \centering
-\caption{Characteristics of the evaluated airships.}
+\caption{Characteristics of the evaluated airships. \addedR{The Payload column lists the nominal commercial cargo capacity reported by each platform's reference source, used as the denominator of the mass-budget envelope of Table~\ref{tab:mass_envelope}.}}
 \label{tab:dirigibles}
 \renewcommand{\arraystretch}{1.2}
 \setlength{\tabcolsep}{4pt}
-\begin{tabular}{@{} l r r r c @{}}
+\begin{tabular}{@{} l r r r r c @{}}
 \toprule
-\textbf{Airship} & \makecell{$A_\text{front}$\\(m²)} & \makecell{$M_\text{str}$\\(kg)} & \makecell{$A_\text{total}$\\(m²)} & $\varepsilon$ \\
+\textbf{Airship} & \makecell{$A_\text{front}$\\(m²)} & \makecell{$M_\text{str}$\\(kg)} & \makecell{$A_\text{total}$\\(m²)} & \makecell{\textbf{Payload}\\(kg)} & $\varepsilon$ \\
 \midrule
-LZ 129 Hindenburg \cite{ref2}    &  7{,}950 & 263{,}600 & 24{,}000 & 0.004 \\
-Pathfinder 3$^{a}$               &  4{,}390 &  99{,}000 & 13{,}000 & 0.010 \\
-Flying Whales LCA60T \cite{ref5} &  7{,}854 & 129{,}000 & 23{,}000 & 0.008 \\
-Zeppelin NT \cite{ref2}          &    837   &   5{,}622 &  2{,}800 & 0.176 \\
+LZ 129 Hindenburg \cite{ref2}    &  7{,}950 & 263{,}600 & 24{,}000 & 12{,}500 & 0.004 \\
+Pathfinder 3$^{a}$ \cite{ref6}   &  4{,}390 &  99{,}000 & 13{,}000 & 10{,}000 & 0.009 \\
+Flying Whales LCA60T \cite{ref5} &  7{,}854 & 129{,}000 & 23{,}000 & 60{,}000 & 0.007 \\
+Zeppelin NT \cite{ref2}          &    837   &   5{,}622 &  2{,}800 &  1{,}000 & 0.140 \\
 \bottomrule
-\multicolumn{5}{@{}l}{$^{a}$ Preliminary specifications from LTA Research; values are estimates.} \\
+\multicolumn{6}{@{}l}{$^{a}$ Preliminary specifications from LTA Research; values are estimates.} \\
 \end{tabular}
 \end{table}
 
@@ -410,7 +409,7 @@ A sweep of $\dotmmax$ was performed between $0.5$ and $1000$~kg/s for each airsh
 \label{fig:barrido_tiempo}
 \end{figure}
 
-Figures~\ref{fig:barrido_desp} and \ref{fig:barrido_tiempo} confirm the trends from Eq.~\eqref{eq:mmin_final}. The \textbf{Pathfinder 3} satisfies the safety threshold at $7$~kg/s and the \textbf{Flying Whales LCA60T} at $6$~kg/s, consistent with the analytical prediction of 6.6 and 5.8~kg/s respectively (within 6\% and 3\%). The \textbf{LZ~129 Hindenburg} crosses the threshold at $4$~kg/s (analytical: 4.1~kg/s, 2\% deviation). The \textbf{Zeppelin NT} crosses the $5$~m threshold at $20$~kg/s and the precision threshold at $35$~kg/s; its simulated minimum falls 25\% below the analytical purely-reactive bound (26.6~kg/s), consistent with the greater relative benefit of proactive preconditioning at $\varepsilon = 0.176$. It is notable that at extreme rates ($\geq 100$~kg/s), the displacement $|\Delta h|$ becomes slightly negative (e.g., $-0.023$~m for Pathfinder~3). This is not a numerical artifact, but evidence that the $-10$~kg/s preconditioning, not being limited by saturation of the main actuator in this phase, reduces buoyancy so aggressively that the airship initiates a controlled descent before the payload loss can induce any ascent. \added{From Figure~\ref{fig:barrido_tiempo}, the Zeppelin~NT achieves the shortest stabilization time ($3.2$~s at $\dotmopt = 35$~kg/s) despite its highest flow requirement, while the Hindenburg requires the longest ($12.4$~s), consistent with its larger inertia slowing both the perturbation and the recovery dynamics.}
+Figures~\ref{fig:barrido_desp} and \ref{fig:barrido_tiempo} confirm the trends from Eq.~\eqref{eq:mmin_final}. The \textbf{Pathfinder 3} satisfies the safety threshold at $7$~kg/s and the \textbf{Flying Whales LCA60T} at $6$~kg/s, consistent with the analytical prediction of 6.6 and 5.8~kg/s respectively (within 6\% and 3\%). The \textbf{LZ~129 Hindenburg} crosses the threshold at $4$~kg/s (analytical: 4.1~kg/s, 2\% deviation). The \textbf{Zeppelin NT} crosses the $5$~m threshold at $20$~kg/s and the precision threshold at $35$~kg/s; its simulated minimum falls 25\% below the analytical purely-reactive bound (26.6~kg/s), consistent with the greater relative benefit of proactive preconditioning at $\varepsilon = 0.140$. It is notable that at extreme rates ($\geq 100$~kg/s), the displacement $|\Delta h|$ becomes slightly negative (e.g., $-0.023$~m for Pathfinder~3). This is not a numerical artifact, but evidence that the $-10$~kg/s preconditioning, not being limited by saturation of the main actuator in this phase, reduces buoyancy so aggressively that the airship initiates a controlled descent before the payload loss can induce any ascent. \added{From Figure~\ref{fig:barrido_tiempo}, the Zeppelin~NT achieves the shortest stabilization time ($3.2$~s at $\dotmopt = 35$~kg/s) despite its highest flow requirement, while the Hindenburg requires the longest ($12.4$~s), consistent with its larger inertia slowing both the perturbation and the recovery dynamics.}
 
 \subsubsection{Minimum and Optimal Rates}
 From the discrete parametric sweep, two operational thresholds are defined to classify the extraction rates $\dot{m}_{H_2,max}$:
@@ -444,7 +443,7 @@ Pathfinder 3         & 7  & 3.286 & 20 & 0.339 &  4.4 & 6.6 \\
 Flying Whales        & 6  & 3.901 & 10 & 0.958 & 10.2 & 5.8 \\
 Zeppelin NT          & 20 & 3.359 & 35 & 0.650 &  3.2 & 26.6$^{a}$ \\
 \bottomrule
-\multicolumn{7}{@{}p{\linewidth}}{$^{a}$ Reactive analytical bound; simulated value 25\% lower due to preconditioning benefit at $\varepsilon = 0.176$.} \\
+\multicolumn{7}{@{}p{\linewidth}}{$^{a}$ Reactive analytical bound; simulated value 25\% lower due to preconditioning benefit at $\varepsilon = 0.140$.} \\
 \end{tabular}}
 \end{table}
 
@@ -452,7 +451,7 @@ From a technological standpoint, the requirements found dictate the type of subs
 
 \subsubsection{Dynamic Validation and Optimization Comparison}
 \label{sec:dynval}
-\added{Two controller configurations are evaluated on the Pathfinder~3 platform, corresponding to the two analytical frameworks of Sections~\ref{sec:theoretical} and \ref{sec:hybrid_bound}: a \emph{standard scheme} with hardcoded preconditioning parameters ($\dot{m}_\text{prec}{=}{-10}$~kg/s, $t_\text{anticip}{=}2$~s, $\dotmmax{=}30$~kg/s) and a \emph{minimax-optimal scheme} in which all parameters are derived analytically from Appendix~A ($\alpha^*{=}0.215$, $\dot{m}_\text{prec}{=}{-5.21}$~kg/s, $t_\text{anticip}{=}3.83$~s, $\dotmmax{=}\dotmstar{=}5.21$~kg/s).}
+\added{Two controller configurations are evaluated on the Pathfinder~3 platform, corresponding to the two analytical frameworks of Sections~\ref{sec:theoretical} and \ref{sec:hybrid_bound}: a \emph{standard scheme} with hardcoded preconditioning parameters ($\dot{m}_\text{prec}{=}{-10}$~kg/s, $t_\text{anticip}{=}2$~s, $\dotmmax{=}30$~kg/s) and a \emph{minimax-optimal scheme} in which all parameters are derived analytically from Appendix~\ref{sec:appendixA} ($\alpha^*{=}0.215$, $\dot{m}_\text{prec}{=}{-5.21}$~kg/s, $t_\text{anticip}{=}3.83$~s, $\dotmmax{=}\dotmstar{=}5.21$~kg/s).}
 
 \paragraph{Standard scheme.}
 \added{Figure~\ref{fig:sim_pf3_single} shows the single-release base case on a logarithmic time axis, which expands the resolution of the critical instants around the release at $t = 1.0$~s. The maximum vertical displacement is contained at $\Delta h \approx 0.37$~m, within the precision threshold ($1$~m). The proactive H\textsubscript{2} extraction pulse is clearly visible in the flow panel prior to release; peak acceleration remains below $0.1\,g$ throughout. A key physical mechanism is the O\textsubscript{2} mass absorption from the atmosphere: for every kilogram of H\textsubscript{2} burned, the system ingests $8$~kg of atmospheric oxygen producing $9$~kg of liquid water that acts as inertial ballast --- captured by the $L_\text{eff}$ factor in Eq.~\eqref{eq:cubic_prec}. Generated energy: ${\approx}460$~kWh per delivery cycle. A 4-drop stress test ($\Delta t = 30$~s) further confirms robustness: the adaptive gain $K_d(t)$, recalculated at each drop to maintain $\zeta = 1.35$, prevents oscillation amplification despite the step-wise reduction in inertial mass, with cumulative generated energy ${\approx}1{,}785$~kWh.}
@@ -472,7 +471,7 @@ From a technological standpoint, the requirements found dictate the type of subs
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{apendice_Pathfinder_3_base_001.png}
-\caption{Minimax-optimal scheme --- Base Mission: dynamic simulation of the Pathfinder~3 with analytically derived parameters ($\dotmstar{=}5.21$~kg/s, $\dot{m}_\text{prec}{=}{-5.21}$~kg/s, $t_\text{anticip}{=}3.83$~s, $\alpha^*{=}0.215$; Appendix~A). Linear time axis. Peak displacement $\Delta h \approx 4.2$~m satisfies the safety threshold ($5$~m). Generated energy: $964$~kWh.}
+\caption{Minimax-optimal scheme --- Base Mission: dynamic simulation of the Pathfinder~3 with analytically derived parameters ($\dotmstar{=}5.21$~kg/s, $\dot{m}_\text{prec}{=}{-5.21}$~kg/s, $t_\text{anticip}{=}3.83$~s, $\alpha^*{=}0.215$; Appendix~\ref{sec:appendixA}). Linear time axis. Peak displacement $\Delta h \approx 4.2$~m satisfies the safety threshold ($5$~m). Generated energy: $964$~kWh.}
 \label{fig:sim_pf3_opt_single}
 \end{figure}
 
@@ -486,27 +485,31 @@ From a technological standpoint, the requirements found dictate the type of subs
 \end{figure}
 
 \paragraph{Comparative summary.}
-\added{Table~\ref{tab:comparison_schemes} quantifies the key differences between the two configurations. The standard scheme operates with a $6{\times}$ oversized actuator relative to the analytical minimum, achieving displacements well within the precision threshold. The minimax-optimal scheme reduces the hardware requirement to the analytical minimum at the cost of operating near the safety-threshold boundary --- the appropriate choice when minimizing installed actuator mass is the primary design constraint. In both configurations, the adaptive PD controller and the O\textsubscript{2} mass-absorption mechanism ensure full state convergence and energetic closure of the regenerative cycle.}
+\added{The two configurations differ primarily in the installed actuator capacity and the resulting operating margin. The standard scheme ($\dotmmax=30$~kg/s, $\dot{m}_\text{prec}=-10$~kg/s, $t_\text{anticip}=2.0$~s) operates with a $6\times$ oversized actuator relative to the analytical minimum, achieving a peak displacement of $\Delta h_\text{max}\approx0.37$~m well within the precision threshold ($\leq1$~m) and recovering ${\approx}460$~kWh per delivery. The minimax-optimal scheme ($\dotmstar=5.21$~kg/s, $\dot{m}_\text{prec}=-5.21$~kg/s, $t_\text{anticip}=3.83$~s, $\alpha^*=0.215$) reduces the installed hardware by $83\%$ at the cost of operating closer to the safety boundary ($\Delta h_\text{max}\approx4.2$~m within the $5$~m threshold), with a higher per-cycle electrolysis demand (${\approx}964$~kWh) recoverable through the photovoltaic regeneration cycle. In both configurations, the adaptive PD controller and the O\textsubscript{2} mass-absorption mechanism ensure full state convergence and energetic closure of the regenerative cycle.}
+
+\paragraph{Multi-platform validation.}
+\addedR{The minimax-optimal scheme is extended to the remaining three platforms (Hindenburg, Flying Whales, Zeppelin~NT), using the per-drop analytical recalculation framework of Appendix~\ref{sec:appendixA}. Table~\ref{tab:multiplatform_validation} consolidates the resulting parameters for the single 1-tonne release; the universality of $\alpha^* = 0.215$ across all four platforms confirms the platform-independence of the optimal preconditioning fraction. The required actuator capacity $\dotmstar$ scales as $M_\text{total}^{-1/2}$, consistent with the scaling paradox predicted analytically in Section~\ref{sec:hybrid_bound}: larger airships require lower mass flows for equivalent payload perturbations. Generated energy per cycle ($958$--$985$~kWh) is approximately independent of platform inertia, since it depends only on the H\textsubscript{2} mass burned per kg of cargo released --- the energetic signature of the regenerative cycle is platform-invariant.}
 
 \begin{table}[H]
 \centering
-\caption{Standard vs.\ minimax-optimal control configurations for the Pathfinder~3 (single 1-tonne release).}
-\label{tab:comparison_schemes}
+\caption{Minimax-optimal scheme: per-platform analytical parameters for a single 1-tonne release. $\alpha^* = 0.215$ is universal; $\dotmstar \propto M_\text{total}^{-1/2}$ confirms the scaling paradox.}
+\label{tab:multiplatform_validation}
 \renewcommand{\arraystretch}{1.3}
-\begin{tabular}{@{} l c c @{}}
+\begin{tabular}{@{} l r c r r r @{}}
 \toprule
-\textbf{Parameter} & \textbf{Standard} & \textbf{Minimax-optimal} \\
+\textbf{Platform} & \makecell{$M_\text{total}$\\(kg)} & $\alpha^*$ & \makecell{$\dotmstar$\\(kg/s)} & \makecell{$t_\text{anticip}$\\(s)} & \makecell{$E_\text{gen}$\\(kWh)} \\
 \midrule
-$\dotmmax$ (kg/s)                      & 30      & 5.21 \\
-$\dot{m}_\text{prec}$ (kg/s)           & $-10$   & $-5.21$ \\
-$t_\text{anticip}$ (s)                 & 2.0     & 3.83 \\
-$\alpha^*$                             & N/A     & 0.215 \\
-$\Delta h_\text{max}$ (m)              & 0.37    & 4.2 \\
-Threshold satisfied                    & Precision (${\leq}1$~m) & Safety (${\leq}5$~m) \\
-$E_\text{gen}$/drop (kWh)              & ${\approx}460$ & ${\approx}964$ \\
+LZ~129 Hindenburg     & 284{,}360 & 0.2150 & 3.20  & 6.24 & 985 \\
+Flying Whales LCA60T  & 139{,}708 & 0.2150 & 4.57  & 4.37 & 966 \\
+Pathfinder~3          & 107{,}468 & 0.2150 & 5.21  & 3.83 & 964 \\
+Zeppelin~NT           &   7{,}117 & 0.2150 & 20.25 & 0.99 & 958 \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\addedR{The Pathfinder~3 simulations (Figures~\ref{fig:sim_pf3_opt_single} and~\ref{fig:sim_pf3_opt_multi}) provide a visual baseline of the minimax-optimal dynamics; analogous time-history plots were generated for the three additional platforms following the same minimax-optimal scheme. For the Hindenburg and Flying Whales platforms, the multi-drop stress test consists of four consecutive 1-tonne releases. For the Zeppelin~NT, the operationally representative configuration is four consecutive $250$~kg releases: a single 1-tonne drop represents 14\% of the platform's total mass (the highest $\varepsilon$ of the evaluated set, Table~\ref{tab:dirigibles}) and pushes the actuator into the $\dotmstar = 20.25$~kg/s extreme of Table~\ref{tab:multiplatform_validation}, retained as the scaling-paradox reference; the $4\times250$~kg sequence aggregates to the same total cargo while keeping each individual perturbation within typical operational regimes. In every case, $\alpha^* = 0.215$ holds invariant, the analytical per-drop recalculation of $\dotmstar$ and $t_\text{anticip}$ tracks the step-wise mass reduction within $\leq 1\%$ between consecutive drops, and the cumulative generated energy scales linearly with the number of releases: $3{,}222$~kWh (Hindenburg multi), $3{,}493$~kWh (Flying Whales multi), and $1{,}123$~kWh (Zeppelin~NT multi $4\times250$~kg).}
+
+\addedR{The simulations confirm that the minimax-optimal scheme is robust across the full $40\times$ range of structural masses considered (Zeppelin~NT to Hindenburg), with $\alpha^* = 0.215$ remaining invariant and the required actuator flow following the analytical scaling law $\dotmstar \propto M_\text{total}^{-1/2}$.}
 
 \subsection{Energy Balance and Auxiliary Subsystems}
 \label{sec:balance}
@@ -558,10 +561,10 @@ Solar energy management and onboard hydrogen regeneration have been studied as a
 \label{eq:regen}
 \end{equation}
 
-adopting as design parameters $f_\text{pan} = 0.45$ (maximum effective area assuming thin-film solar cells on the upper curvature), $\eta_\text{el} = 0.65$ and an electrolysis energy demand of $E_{H_2,\text{el}} = 45$~kWh/kg (standard values for commercial PEM cells \cite{ref10}).
+adopting as design parameters $f_\text{pan} = 0.45$ (maximum effective area assuming thin-film solar cells on the upper curvature), $\eta_\text{el} = 0.65$ and an electrolysis energy demand of $E_{H_2,\text{el}} = 45$~kWh/kg, the lower bound of the 45--60~kWh/kg range reported for state-of-the-art PEM electrolysis \cite{Letsios2026, Esmaeili2023PEM}.
 
 
-Under average irradiance conditions in Lima ($2.0$~kWh/m²/day), vehicle scale dictates the viability of the closed cycle. For a single 1-tonne release, the hydrogen demand per delivery is ${\approx}44.7$~kg (descent phase, O\textsubscript{2}-corrected; see Section~\ref{sec:balance}), which sets the electrolysis regeneration target. The \textbf{LZ 129 Hindenburg} (0.14~days, 3.4~h) and the \textbf{Flying Whales} (0.15~days, 3.6~h) stand out as the efficiency benchmarks thanks to their large surface areas ($24{,}000$ and $23{,}000\text{ m}^2$ respectively). By contrast, the \textbf{Pathfinder 3} requires 0.26 days (6.4~h), while the \textbf{Zeppelin NT} ($36$~kg/day) is penalized with a recovery cycle of approximately 29.5~hours (1.23~days), exceeding the standard 24-hour delivery cadence.
+Under average irradiance conditions in Lima ($2.0$~kWh/m²/day, equivalent to $2.0$~peak sun-hours/day in solar-industry standard notation), vehicle scale dictates the viability of the closed cycle. For a single 1-tonne release, the hydrogen demand per delivery is ${\approx}44.7$~kg (descent phase, O\textsubscript{2}-corrected; see Section~\ref{sec:balance}), which sets the electrolysis regeneration target. The \textbf{LZ 129 Hindenburg} (0.14~days, 3.4~h) and the \textbf{Flying Whales} (0.15~days, 3.6~h) stand out as the efficiency benchmarks thanks to their large surface areas ($24{,}000$ and $23{,}000\text{ m}^2$ respectively). By contrast, the \textbf{Pathfinder 3} requires 0.26 days (6.4~h), while the \textbf{Zeppelin NT} ($36$~kg/day) is penalized with a recovery cycle of approximately 29.5~hours (1.23~days), exceeding the standard 24-hour delivery cadence.
 
 Scale effects become decisive in high-intensity mission profiles. Faced with a demand of 4 consecutive releases (${\sim}179$~kg of H\textsubscript{2}), both the \textbf{Hindenburg} (0.57~days) and the \textbf{Flying Whales} (0.60~days) maintain daily self-sufficiency. The \textbf{Pathfinder 3} narrowly exceeds its daily cadence at 1.06~days, while the \textbf{Zeppelin NT} (${\approx}4.9$~days) would greatly exceed its immediate solar conversion rate. In these cases, the limitation does not lie in flight autonomy but in the water-to-gas conversion speed; the vehicle will need to draw from its pressurized H\textsubscript{2} reserve tanks while the system progressively regenerates the stored liquid ballast. This contrast underscores that the regenerative cycle is naturally optimized in large-scale airships, where the high area-to-mass ratio favors continuous unloading logistics without depleting main reserves or depending on external supply.
 
@@ -594,13 +597,13 @@ H\textsubscript{2} regen.\ fuel cell & No             & Yes           & No      
 \end{tabular}}
 \end{table}
 
-\added{Among closed-cycle approaches, COSH relies on mechanical He compression within a separate gas infrastructure and provides no post-release dynamic stabilization; regenerative fuel cells address pressure maintenance but not the transient aerostatic imbalance following a payload release. The proposed cycle is the only approach in Table~\ref{tab:comparison} that simultaneously achieves closed-cycle operation, no per-cycle material loss (under ideal closed-cycle assumption; Table~\ref{tab:comparison}, note $d$), and active post-release stabilization within a single H\textsubscript{2} chain. Beyond the system concept, this work provides analytical tools absent from prior approaches: a closed-form scaling law for the minimum actuator capacity (Eq.~\eqref{eq:mmin_final}), a minimax formulation with exact solution via Cardano's method (Section~\ref{sec:hybrid_bound}, Appendix~A), and a parametric characterization validated across four representative platforms.}
+\added{Among closed-cycle approaches, COSH relies on mechanical He compression within a separate gas infrastructure and provides no post-release dynamic stabilization; regenerative fuel cells address pressure maintenance but not the transient aerostatic imbalance following a payload release. The proposed cycle is the only approach in Table~\ref{tab:comparison} that simultaneously achieves closed-cycle operation, no per-cycle material loss (under ideal closed-cycle assumption; Table~\ref{tab:comparison}, note $d$), and active post-release stabilization within a single H\textsubscript{2} chain. Beyond the system concept, this work provides analytical tools absent from prior approaches: a closed-form scaling law for the minimum actuator capacity (Eq.~\eqref{eq:mmin_final}), a minimax formulation with exact solution via Cardano's method (Section~\ref{sec:hybrid_bound}, Appendix~\ref{sec:appendixA}), and a parametric characterization validated across four representative platforms.}
 
 \subsection{Scale and Sensitivity}
 \label{sec:scale}
 The most notable result is the inversion of scale intuition: the Hindenburg (264~t) requires the lowest rate (4~kg/s), while the Zeppelin~NT (5.6~t) is the most sensitive (20~kg/s). This paradox has a direct physical explanation: a higher total mass implies a smaller perturbation index $\varepsilon = m_\text{load}/M_\text{total}$, which in turn yields a longer available response window $\tau_\text{ctrl}$ before the safety threshold is exceeded (Eq.~\eqref{eq:tau}). The actuator therefore operates against a slower-evolving perturbation, reducing the required instantaneous flow rate. This result positions the regenerative H\textsubscript{2} cycle as intrinsically suited for next-generation heavy-lift platforms, where it is precisely the largest vehicles that benefit most.
 
-\added{Beyond the flow rate requirement, $\varepsilon$ also governs the peak post-release acceleration: $a_\text{max} = \varepsilon\,g$, bounded by $0.176\,g$ for the Zeppelin~NT --- the most dynamically sensitive platform --- and below $0.01\,g$ for the three large-scale cases. All evaluated platforms therefore satisfy an operational comfort threshold of $0.2\,g$ without additional constraint, confirming that the perturbation is dynamically significant for buoyancy control but does not impose structural or personnel-safety hazards in any of the evaluated cases.}
+\added{Beyond the flow rate requirement, $\varepsilon$ also governs the peak post-release acceleration: $a_\text{max} = \varepsilon\,g$, bounded by $0.140\,g$ for the Zeppelin~NT --- the most dynamically sensitive platform --- and below $0.01\,g$ for the three large-scale cases. All evaluated platforms therefore satisfy an operational comfort threshold of $0.2\,g$ without additional constraint, confirming that the perturbation is dynamically significant for buoyancy control but does not impose structural or personnel-safety hazards in any of the evaluated cases.}
 
 \subsection{Stabilization Scope: Force Balance, State Convergence, and Fine-Attitude Control}
 \label{sec:stab_scope}
@@ -609,7 +612,7 @@ The most notable result is the inversion of scale intuition: the Hindenburg (264
 \added{For operations at the absolute minimum installed capacity --- where the actuator is fully saturated throughout the maneuver --- a small residual velocity may persist after the buoyancy system has exhausted its authority. In practice, this residual is handled by the fine-attitude propulsion system (vectored thrusters or differential propeller pitch) employed during standard airship approach and landing procedures \cite{ref7, ref8}. This two-layer architecture --- buoyancy system for gross perturbation attenuation, fine-attitude propulsion for terminal velocity correction --- imposes no additional hardware requirements beyond the existing propulsion system and is consistent with established operational airship protocols.}
 
 \subsection{Condensation, O$_2$ Source and Mass Balance}
-The threshold $Q_\text{cond,min}=1{,}512$~kW corresponds to the scale of medium-capacity industrial heat exchangers used in chemical processing applications. The analysis adopts atmospheric O$_2$ as the reference choice, although the system equally admits onboard tanks. As demonstrated quantitatively in Figure~\ref{fig:comparacion_o2}, atmospheric air reduces the descent-phase H$_2$ burning requirement by ${\approx}35.8\%$ relative to onboard O$_2$ (from ${\approx}69.6$~kg to $44.7$~kg per tonne). The physical mechanism is as follows: with onboard O$_2$, only the buoyancy reduction contributes to stabilization (effective factor $\rho_\text{air}/\rho_{H_2} \approx 14.4$); with atmospheric air, the stoichiometric 8~kg of O$_2$ absorbed per kg of H$_2$ adds directly to the vehicle inertial mass, yielding $L_\text{eff} = \rho_\text{air}/\rho_{H_2}+8 \approx 22.4$, consistent with the O$_2$-corrected formula of Section~\ref{sec:balance}. This supplementary inertial ballast simultaneously reduces actuator flow demand and the critical-window condensation load, constituting an additional degree of freedom for mission profile design.
+The threshold $Q_\text{cond,min}=1{,}512$~kW corresponds to the scale of medium-capacity industrial heat exchangers used in chemical processing applications. The analysis adopts atmospheric O$_2$ as the reference choice, although the system equally admits onboard tanks. As demonstrated quantitatively in Figure~\ref{fig:comparacion_o2}, atmospheric air reduces the descent-phase H$_2$ burning requirement by ${\approx}35.8\%$ relative to onboard O$_2$ (from ${\approx}69.6$~kg to $44.7$~kg per tonne). The physical mechanism is as follows: with onboard O$_2$, only the buoyancy reduction contributes to stabilization (effective factor $\rho_\text{air}/\rho_{H_2} \approx 14.4$); with atmospheric air, the stoichiometric 8~kg of O$_2$ absorbed per kg of H$_2$ adds directly to the vehicle inertial mass, yielding $L_\text{eff} = \rho_\text{air}/\rho_{H_2}+8 \approx 22.4$, consistent with the O$_2$-corrected formula of Section~\ref{sec:balance}. The required air ingestion (${\approx}34$~kg of air per kg H$_2$ at stoichiometry) is handled naturally by the modular combustor architecture: each 1~kg/s module operates with ${\approx}34$--68~kg/s of combustion air at $\lambda = 2$--3, consistent with the GE90-class core airflow demonstrated in \cite{Cameretti2025} (${\approx}130$~kg/s per combustion chamber). This supplementary inertial ballast simultaneously reduces actuator flow demand and the critical-window condensation load, constituting an additional degree of freedom for mission profile design.
 
 \begin{figure}[H]
 \centering
@@ -620,27 +623,101 @@ The threshold $Q_\text{cond,min}=1{,}512$~kW corresponds to the scale of medium-
 
 \subsection{Hardware Implementation Constraints}
 \label{sec:combustion}
-The system requires two high-power subsystems: the condenser ($Q_\text{cond,min}=1{,}512$~kW for the critical 10-min window) and the electrolysis bank. At power densities of compact brazed-aluminum heat exchangers ($\sim\!20$--$50$~kW/kg \cite{Hesselgreaves2016}), the condenser weighs between 30 and 76~kg; the PEM electrolysis bank ($\sim\!1$~kW/kg \cite{ref10}) adds approximately 84~kg to sustain one delivery cycle per day ($44.7$~kg H\textsubscript{2}/day at ${\approx}84$~kW continuous). The total hardware mass amounts to $\sim\!114$--$160$~kg, representing between 11\% and 16\% of the 1,000~kg reference payload. This penalty is critical for small airships such as the Zeppelin~NT, but becomes negligible on large-scale platforms: for the Flying Whales~LCA60T (60~t of payload) the same hardware represents less than 0.5\% of the payload capacity.
+\addedR{The actuator-sizing laws derived in Section~\ref{sec:hybrid_bound} fix the parametric ranges over which each subsystem of the regenerative cycle must operate. Table~\ref{tab:hardware_validation} details the alignment between these model-derived requirements and the operational ranges demonstrated in peer-reviewed aerospace and industrial hardware; a detailed subsystem-by-subsystem analysis with mass bounds is provided in Appendix~\ref{app:hardware_expanded}.}
 
-\added{Burning H\textsubscript{2} at rates of up to 50~kg/s releases thermal power on the order of 6~GW, comparable to that of liquid propellant rocket engines (the Space Shuttle's RS-25 burned ${\approx}74$~kg/s of LH\textsubscript{2} at ${\approx}3{,}300$~°C and 207~bar \cite{ref11}). However, the analogy has important limits: in the present system combustion occurs at atmospheric pressure and can be designed for continuous, low flame-temperature operation through air excess or steam dilution. Hydrogen exhibits a wide flammability range in air (4--75\% by volume \cite{Najjar2013}); safe operation is maintained through lean premix conditions ($\lambda > 2$), which reduce the adiabatic flame temperature from approximately 2{,}100~°C at stoichiometry to below 900~°C \cite{Turns2011} --- compatible with commercial high-temperature alloys and consistent with the equipment requirements established under Directive ATEX~2014/34/EU for explosive-atmosphere applications. Regenerative cooling technologies developed for rockets — where fuel preheats the chamber walls before injection — are directly transferable to this application at reduced scale, with the additional advantage that the required wall temperatures are substantially lower. The ballonet material does not come into contact with the combustion zone if it is confined in an isolated pre-chamber upstream of the heat exchanger, a standard practice in industrial H\textsubscript{2} boilers. At the nominal operating range of 4--20~kg/s, thermal power falls to 480~MW--2.4~GW.}
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{System-level requirements derived from the actuator-sizing laws of Section~\ref{sec:hybrid_bound}, contrasted with demonstrated aerospace and industrial benchmarks. Full subsystem mass bounds: Appendix~\ref{app:hardware_expanded}.}
+\label{tab:hardware_validation}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{} l p{4.2cm} p{5.8cm} @{}}
+\toprule
+\textbf{Subsystem} & \textbf{Required by model} & \textbf{Demonstrated benchmark} \\
+\midrule
+Generator unit
+ & $\dotmstar = 2.5$--$5.2$~kg/s; 300--624~MW (burst-duty ${\sim}$30~s/cycle)
+ & 1.0--1.25~kg/s per GE90-class H\textsubscript{2} combustor, 121--150~MW thermal (CFD) \cite{Cameretti2025} \\
+\midrule
+Condenser
+ & $Q_\text{cond} \geq 1{,}512$~kW
+ & HySIITE aerospace rig: 1.26~kg/s H\textsubscript{2}O, ${\sim}$2{,}844~kW; 20--50~kW/kg density \cite{Hesselgreaves2016} \\
+\midrule
+PEM electrolyser
+ & 84~kW continuous; 44.7~kg H\textsubscript{2}/day; $\eta \geq 65\%$; $\geq$60{,}000~h
+ & 0.5--2.2~kW/kg \cite{Zhang2025PEMFC,Kohout2003FuelCell}; $\geq$60{,}000~h \cite{Esmaeili2023PEM} \\
+\midrule
+Photovoltaic array
+ & Close daily H\textsubscript{2} regeneration budget (84~kW electrolysis, 44.7~kg/day)
+ & $f_\text{pan} = 0.45 \cdot A_\text{total}$ of airship-grade thin-film (0.12~kg/m\textsuperscript{2}, $\eta = 8\%$) closes budget under mean irradiance \cite{Pande2018} \\
+\midrule
+H\textsubscript{2} storage (COPV)
+ & 30--105~kg H\textsubscript{2}/cycle at 350~bar
+ & Type-IV composite, 5.5~wt\% gravimetric density; SAE J2601-2 \cite{SAE2023} \\
+\midrule
+H\textsubscript{2} compressor
+ & ${\sim}$6~kW at ${\sim}$1.86~kg/h; 30--350~bar
+ & Hofer Case~2: 11~kW at 1.8~kg/h, 2-stage diaphragm \cite{Giuffrida2025,Letsios2026,Chalkiadakis2023} \\
+\midrule
+Envelope \& ballonets
+ & $\Delta P = 1$--50~mbar; multilayer laminate
+ & 5~mbar (Zeppelin~NT) \cite{Stockbridge2012Airship}; Tedlar/polyester/polyurethane \cite{Lobner2024Airships} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-A higher generator efficiency ($\eta_\text{gen} \approx 0.55$, achievable with modern H\textsubscript{2} combustion systems \cite{ref9}) would not reduce H\textsubscript{2} consumption --- which depends solely on the aerostatic force balance (Eq.~\eqref{eq:mh2comb}) --- but would increase the electrical energy recovered per cycle; this improvement is directly quantifiable through Eq.~\eqref{eq:egen}, which scales linearly with $\eta_\text{gen}$. Added-mass effects \cite{Li2007} are neglected in the vertical axis model, consistent with the low accelerations involved in the controlled stabilization regime. \added{The minimax-optimal scheme introduces a hardware--fuel trade-off: reducing the installed actuator capacity from 30~kg/s to $\dotmstar = 5.21$~kg/s lowers the peak combustion hardware requirement by 83\%, but the saturated actuator operates for a longer stabilization window, increasing the total H\textsubscript{2} consumed per delivery (${\approx}96$~kg vs.\ ${\approx}46$~kg for the standard scheme; Table~\ref{tab:comparison_schemes}). The resulting higher electrolysis demand --- approximately $960$~kWh vs.\ $460$~kWh per cycle --- should be factored into solar regeneration planning when the minimax configuration is selected.}
+\addedR{The integrated mass budget is detailed in Appendix~\ref{app:mass_budget_full} and summarised in Table~\ref{tab:mass_envelope}. The optimistic component bound applies advanced HT-PEM at 50~kg \cite{Zhang2025PEMFC} and burst-duty generator modules at 250~kg each \cite{Funke2022}; the pessimistic bound applies air-cooled PEM at 170~kg and continuous-duty generator modules at 600~kg each. The viability column reports $\checkmark$ when the system mass remains within the platform's payload capacity and $\times$ in the scaling-limit regime where it does not.}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{Per-platform mass envelope. Each platform reports two rows: optimistic component bound (upper) and pessimistic component bound (lower); see preceding paragraph for the bound definitions.}
+\label{tab:mass_envelope}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{} l r r r c @{}}
+\toprule
+\textbf{Platform} & \textbf{Payload (kg)} & \textbf{System mass (kg)} & \textbf{\% payload} & \textbf{Viability} \\
+\midrule
+\multirow{2}{*}{LZ~129 Hindenburg} & \multirow{2}{*}{12{,}500} & 4{,}309 & 34\%  & \checkmark \\
+                                  &                            & 5{,}829 & 47\%  & \checkmark \\
+\midrule
+\multirow{2}{*}{Flying Whales LCA60T} & \multirow{2}{*}{60{,}000} & 4{,}644 & 7.7\%  & \checkmark \\
+                                     &                            & 6{,}514 & 10.9\% & \checkmark \\
+\midrule
+\multirow{2}{*}{Pathfinder~3} & \multirow{2}{*}{10{,}000} & 3{,}049 & 30\% & \checkmark \\
+                              &                            & 5{,}269 & 53\% & \checkmark \\
+\midrule
+\multirow{2}{*}{Zeppelin~NT ($4\!\times\!250$~kg)} & \multirow{2}{*}{1{,}000} & 1{,}831 & 183\% & $\times$ \\
+                                                  &                          & 3{,}001 & 300\% & $\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\addedR{Three of four platforms satisfy the mass envelope under both optimistic and pessimistic component bounds, with mass-budget overhead between 7.7\% and 53\% of payload. The Zeppelin~NT exceeds the payload threshold under any current technology assumption, consistent with the scaling paradox of Section~\ref{sec:hybrid_bound}.}
+
+\addedR{The thin-film amorphous baseline ($120$~g/m\textsuperscript{2}, $\eta=8\%$ \cite{Pande2018}) brings three of four platforms to sub-24~h regeneration; the Zeppelin~NT remains borderline at 29.5~h (Section~\ref{sec:balance}). Higher-efficiency airship-grade alternatives (single-junction $\eta=24\%$, triple-junction $\eta=32\%$) shorten the regeneration cycle in inverse proportion to $\eta$ at a proportionate mass penalty; the per-platform impact is detailed in Appendix~\ref{app:panel_bounds}.}
+
+\addedR{The energy balance assumes complete water recovery ($\eta_\text{cond} = 1$). Partial condensation ($\eta_\text{cond} \approx 0.85$) does not degrade buoyancy control --- the feedback PD compensator adapts to the residual disturbance --- but proportionally increases the H\textsubscript{2} flow needed to close the cycle, absorbed by the photovoltaic regeneration loop; a unified electrolyser--fuel-cell architecture (Appendix~\ref{app:rfc_future}) would consolidate this subsystem further.}
+
+\added{Combustion at the nominal 4--20~kg/s range releases 480~MW--2.4~GW of thermal power at atmospheric pressure. Lean premix operation ($\lambda > 2$) keeps the adiabatic flame temperature below 900~°C \cite{Turns2011,Giacomazzi2023} --- compatible with commercial high-temperature alloys and the equipment requirements of Directive ATEX~2014/34/EU --- and the ballonet material is isolated from the combustion zone by an upstream pre-chamber, as in standard industrial H\textsubscript{2} boilers. The wide flammability range of H\textsubscript{2} in air (4--75\% by volume \cite{Najjar2013}) is bounded by the lean premix condition, which simultaneously suppresses NO\textsubscript{x} formation \cite{Giacomazzi2023}.}
+
+\added{The model adopts a conservative generator efficiency $\eta_\text{gen} = 0.30$; modern H\textsubscript{2} combustion systems reach $\eta_\text{gen} \approx 0.40$--$0.55$ \cite{ref9,Boretti2020H2ICE,Stepien2021,Wrobel2022}, which would not change the H\textsubscript{2} consumption ---which depends only on the aerostatic balance (Eq.~\eqref{eq:mh2comb})--- but would scale the electrical energy recovered per cycle linearly through Eq.~\eqref{eq:egen}. Added-mass effects \cite{Li2007} are neglected, consistent with the low accelerations of the controlled stabilization regime. The minimax-optimal scheme entails a hardware--fuel trade-off documented in Section~\ref{sec:dynval}: lower installed actuator capacity at the cost of higher per-cycle electrolysis demand.}
 
 \subsection{Future Work}
-The closed-form minimax formulation of Section~\ref{sec:hybrid_bound} has been numerically validated for the Pathfinder~3 platform; its extension to the remaining three evaluated airships and to multi-axis attitude control, together with formal integration with the fine-attitude propulsion system for terminal velocity correction (Section~\ref{sec:stab_scope}), constitutes the most immediate next step. Replacing the hybrid PD scheme with a model predictive controller (MPC) that optimizes the preconditioning depth $D_\text{lim}$ and compensation fraction $\alpha^*$ in real time would extend the analytical results of Appendix~A to the closed-loop control problem. The thermomechanical design of each subsystem to satisfy the derived specifications --- condenser at $Q_\text{cond,min} \geq 1{,}512$~kW, generator sustaining $4$--$50$~kg/s, and photovoltaic array covering ${\geq}45\%$ of fuselage area --- represents the primary engineering challenge. Experimental validation at subsystem level and the definition of the \emph{ideal airship} --- the platform characteristics that simultaneously minimize all actuator, condenser, and regeneration requirements --- remain as primary directions for this research area.
+\addedR{Methodological extensions include multi-axis attitude control, formal integration with the fine-attitude propulsion system (Section~\ref{sec:stab_scope}), and replacement of the hybrid PD scheme by a model predictive controller (MPC) operating on $D_\text{lim}$ and $\alpha^*$. On the engineering side, system-level integration and certification under aerospace airworthiness frameworks remain the primary challenges. Experimental subsystem-level validation and the definition of the \emph{ideal airship} --- the platform that simultaneously minimises all actuator, condenser, and regeneration requirements --- constitute primary directions for this research area.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
 
 \begin{enumerate}
-\item The \textbf{simulated values} range from 4~kg/s (Hindenburg) to 20~kg/s (Zeppelin~NT), within the range of existing industrial H\textsubscript{2} combustion technology (Section~\ref{sec:combustion}). The perturbation index $\varepsilon = m_\text{load}/M_\text{total}$ orders the requirements: the higher the $\varepsilon$, the higher the required rate.
-\item \textbf{Larger airships are easier to stabilize}. All four evaluated airships satisfy the safety threshold ($|\Delta h| \le 5$ m) with achievable rates, with large-scale models being the most efficient.
-\item \textbf{Three of the four evaluated airships} achieve energetic self-sufficiency through solar regeneration under average Lima irradiance conditions, recovering the H\textsubscript{2} consumed per delivery in less than one day. The exception is the Zeppelin~NT, whose limited surface area (2{,}800~m\textsuperscript{2}) results in a recovery cycle of approximately 30~hours (1.23~days) --- exceeding the standard 24-hour delivery cadence --- reinforcing that the regenerative cycle is naturally optimized for large-scale platforms.
-\item The flow rate range $\dotmmin = 4$--$20$~kg/s is \textbf{directly actionable as a combustion subsystem specification}, with each platform's requirement ordered by the perturbation index $\varepsilon$.
-\item The regenerative cycle produces a \textbf{quantifiable and predictable hydrogen demand} at a single predictable scale: ${\approx}44.7$~kg per tonne of payload (descent phase, O\textsubscript{2}-corrected), governing condenser sizing, actuator requirements, and solar regeneration planning alike. This predictability constitutes a direct input for techno-economic feasibility studies of H\textsubscript{2} supply chains in aerial heavy-lift logistics.
-\item \added{The \textbf{anticipatory preconditioning strategy} reduces $\dotmmin$ below the purely-reactive analytical bound. A reactive-only approach requires ${\approx}27$~kg/s (Eq.~\eqref{eq:mmin_final}) for the smallest evaluated platform (Zeppelin~NT, $\tau_\text{ctrl} \approx 2.6$~s), while the hybrid anticipatory scheme achieves stabilization at 4--20~kg/s depending on platform inertia. The \textbf{closed-form minimax formulation} (Appendix~A) further reduces the required installed capacity to $\dotmstar = 5.21$~kg/s for the Pathfinder~3 ($\alpha^* = 0.215$, via Cardano's method) --- an $83\%$ reduction relative to the standard $30$~kg/s configuration --- by analytically optimizing the proactive compensation fraction, validated numerically within $15$--$25\%$ of the simulated values.}
-\item \added{The use of \textbf{atmospheric O\textsubscript{2} as oxidizer} reduces the descent-phase H\textsubscript{2} requirement by ${\approx}36\%$ relative to an onboard-O\textsubscript{2} scheme (${\approx}44.7$ vs.\ ${\approx}70$~kg/tonne). The absorbed O\textsubscript{2} mass acts as supplementary inertial ballast during stabilization, simultaneously reducing the actuator demand and the critical-window condensation requirement, offering an additional degree of freedom for mission profile design that has no counterpart in conventional buoyancy control approaches.}
-\item \added{For field implementation, the parametric analysis yields direct subsystem specifications: the condenser must provide $Q_\text{cond,min} \geq 1{,}512$~kW for the 10-min critical window (descent phase, O\textsubscript{2}-corrected); the generator unit must sustain combustion flows between 4 and 50~kg/s; and the photovoltaic array must cover at least 45\% of the fuselage surface area. Large-scale platforms such as the Pathfinder~3, Flying Whales~LCA60T, and LZ~129 Hindenburg emerge as immediate candidates for implementation, requiring ground infrastructure analogous to existing industrial H\textsubscript{2} logistics hubs.}
+\item \addedR{The \textbf{dynamically validated} optimal flow rates (Section~\ref{sec:dynval}, Table~\ref{tab:multiplatform_validation}) span $3.2$~kg/s (LZ~129 Hindenburg) to $20.25$~kg/s (Zeppelin~NT, single 1-tonne extreme); the operationally representative configuration of the Zeppelin~NT (multi-drop $4\times250$~kg) settles at $\sim$2.5~kg/s. These rates fall within ranges currently demonstrated by aerospace H\textsubscript{2} combustion technology (Table~\ref{tab:hardware_validation}), and the perturbation index $\varepsilon = m_\text{load}/M_\text{total}$ orders the requirements monotonically: the higher the $\varepsilon$, the higher the rate.}
+\item \addedR{The \textbf{anticipatory preconditioning} reduces $\dotmmin$ below the purely-reactive analytical bound (${\approx}27$~kg/s for the Zeppelin~NT, $\tau_\text{ctrl} \approx 2.6$~s), and the closed-form \textbf{minimax formulation} (Appendix~\ref{sec:appendixA}) further compresses the installed capacity to $\dotmstar \in [3.2,\,20.25]$~kg/s across the four platforms, with the compensation fraction $\alpha^* = 0.215$ holding invariant over the full $40\times$ range of structural masses --- a universal design constant emerging directly from the closed-form analytical structure. For the Pathfinder~3 representative case, this corresponds to an $83\%$ reduction relative to the $30$~kg/s standard configuration, with numerical validation within $15$--$25\%$ of the simulated values.}
+\item \added{The use of \textbf{atmospheric O\textsubscript{2} as oxidizer} cuts the descent-phase H\textsubscript{2} requirement by ${\approx}36\%$ relative to an onboard-O\textsubscript{2} scheme (${\approx}44.7$ vs.\ ${\approx}70$~kg per tonne released). The absorbed O\textsubscript{2} mass simultaneously acts as supplementary inertial ballast, lowering the actuator demand and relaxing the critical-window condensation requirement, while opening an additional degree of freedom in mission profile design.}
+\item \textbf{Larger airships are easier to stabilize}. All four evaluated airships satisfy the safety threshold ($|\Delta h| \le 5$~m) with achievable rates; large-scale models operate the deepest within the threshold and with the smallest specific actuator load.
+\item \textbf{Three of the four evaluated airships} achieve energetic self-sufficiency through solar regeneration under average Lima irradiance, recovering the H\textsubscript{2} consumed per delivery in under one day. The Zeppelin~NT is the exception: its limited upper-surface coverage ($1{,}260$~m\textsuperscript{2} of usable photovoltaic area, against $10{,}800$~m\textsuperscript{2} for the LZ~129 Hindenburg) extends the recovery cycle to approximately 30~hours (1.23~days), beyond the 24-hour delivery cadence --- the regenerative cycle is naturally optimised for large-scale platforms.
+\item The regenerative cycle produces a \textbf{quantifiable and predictable hydrogen demand} at a single scale --- ${\approx}44.7$~kg per tonne of payload (descent phase, O\textsubscript{2}-corrected) --- governing condenser sizing, actuator requirements, and solar regeneration planning alike. This predictability feeds directly into techno-economic feasibility studies of H\textsubscript{2} supply chains for aerial heavy-lift logistics.
+\item \addedR{The parametric analysis yields a complete set of subsystem specifications consolidated in Tables~\ref{tab:hardware_validation} and~\ref{tab:mass_envelope}: a condenser of $Q_\text{cond,min} \geq 1{,}512$~kW for the 10-min critical window; a generator unit in burst-duty operation at $\dotmstar = 2.5$--$5.2$~kg/s, 300--624~MW thermal (Table~\ref{tab:hardware_validation}; per-module sizing: Appendix~\ref{app:generator_bounds}); a PEM electrolyser of ${\approx}84$~kW continuous capacity sustaining 44.7~kg H\textsubscript{2}/day; a Type-IV COPV storage system of 30--100~kg H\textsubscript{2}/cycle at 350~bar; and a photovoltaic array covering ${\geq}45\%$ of the upper-surface area. Each subsystem operates within ranges demonstrated by current aerospace and industrial state of the art (Appendix~\ref{app:hardware_expanded}). The integrated mass envelope remains below 53\% of commercial payload capacity even under pessimistic component bounds, indicating that the Pathfinder~3, Flying Whales~LCA60T, and LZ~129 Hindenburg are strong candidate platforms for implementation on infrastructure analogous to existing industrial H\textsubscript{2} hubs.}
+\item \addedR{Beyond the specific platforms evaluated, the closed-form sizing laws of Section~\ref{sec:hybrid_bound} together with the consolidated subsystem framework of Tables~\ref{tab:hardware_validation} and~\ref{tab:mass_envelope} transfer directly to other heavy-lift configurations: any candidate platform reduces to a perturbation index $\varepsilon$ and a structural mass, which the analytical machinery converts into actuator, condenser, and regeneration specifications. The regenerative cycle thus operates as a \textbf{generic actuation paradigm} for the next generation of heavy-lift airships, rather than as a configuration-specific result.}
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -650,38 +727,56 @@ The closed-form minimax formulation of Section~\ref{sec:hybrid_bound} has been n
 
 \funding{This research received no external funding.}
 
-\dataavailability{The simulation code and datasets supporting the conclusions of this article are openly available on GitHub at \url{https://doi.org/10.5281/zenodo.19717621} and will be permanently archived in Zenodo upon acceptance. }
+\dataavailability{The simulation code and datasets supporting the conclusions of this article are openly available in the GitHub repository associated with this work and archived in Zenodo (DOI: \url{https://doi.org/10.5281/zenodo.19717621}). The Zenodo archive will be marked as the citable version upon acceptance.}
 \conflictsofinterest{The authors declare no conflict of interest.}
 
 \abbreviations{Abbreviations}{
-The following abbreviations are used in this manuscript:\\
+The following abbreviations and symbols are used in this manuscript:\\
 
 \noindent
 \begin{tabular}{@{}ll}
-$A_\text{front}$  & Frontal (aerodynamic reference) area (m$^2$) \\
-$A_\text{total}$  & Total surface area of the airship (m$^2$) \\
-$\alpha^*$        & Minimax-optimal proactive compensation fraction \\
-$D_\text{lim}$    & Maximum allowed preconditioning sinking depth (m) \\
-$h,\,\Delta h$    & Altitude and vertical displacement (m) \\
-$K_p,\,K_d,\,K_m$ & Control gains (proportional, derivative, and mass) \\
-$L_\text{eff}$    & Effective specific lift factor ($\rho_\text{air}/\rho_{H_2} + 8$) \\
-$M_\text{str}$    & Structural mass (kg) \\
-$M_\text{total}$  & Total dynamic inertial mass (kg) \\
-$m_\text{load}$   & Mass of the payload to be released (kg) \\
-$m_\text{water}$  & Water ballast accumulated via O$_2$ absorption (kg) \\
-$\dot{m}_{H_2}$   & H$_2$ extraction/combustion rate (kg/s) \\
-$\dotmmin$        & Minimum H$_2$ combustion rate for safe stabilization (kg/s) \\
-$\dotmstar$       & Minimax-optimal installed actuator capacity (kg/s) \\
-$\dot{m}_\text{prec}$ & Proactive preconditioning flow rate (kg/s) \\
-$Q_\text{cond}$   & Condenser thermal power (kW) \\
-$r_\text{ef}$     & Effective solar yield (kWh/m$^2$/day) \\
-$T_1$             & Isothermal lifting gas temperature (K) \\
-$t_\text{anticip}$ & Anticipation time before payload release (s) \\
-$V_\text{eq}$     & Dynamic equilibrium H$_2$ volume (m$^3$) \\
-$\varepsilon$     & Perturbation index ($m_\text{load}/M_\text{total}$) \\
-$\eta_\text{el}$  & Electrolysis system efficiency \\
-$\eta_\text{gen}$ & Effective generator efficiency \\
-$\zeta$           & Adaptive damping coefficient \\
+\multicolumn{2}{@{}l}{\textbf{Mathematical Symbols}} \\
+$A_\text{front}$       & Frontal (aerodynamic reference) area (m$^2$) \\
+$A_\text{total}$       & Total surface area of the airship (m$^2$) \\
+$C_D$                  & Aerodynamic drag coefficient \\
+$D_\text{lim}$         & Maximum allowed preconditioning sinking depth (m) \\
+$E_{H_2,\text{el}}$    & Specific energy demand for water electrolysis (kWh/kg) \\
+$F_\text{b}$           & Aerostatic buoyant thrust (N) \\
+$F_\text{drag}$        & Aerodynamic drag force (N) \\
+$f_\text{pan}$         & Photovoltaic surface coverage fraction \\
+$g$                    & Acceleration due to gravity (m/s$^2$) \\
+$h,\,\Delta h$         & Altitude and vertical displacement (m) \\
+$K_p,\,K_d,\,K_m$     & Control gains (proportional, derivative, and mass) \\
+$L_\text{eff}$         & Effective specific lift factor ($\rho_\text{air}/\rho_{H_2} + 8$) \\
+$M_\text{str}$         & Structural mass (kg) \\
+$M_\text{total}$       & Total dynamic inertial mass (kg) \\
+$m_{H_2}$              & Mass of hydrogen gas inside the envelope (kg) \\
+$m_\text{load}$        & Mass of the payload to be released (kg) \\
+$m_\text{water}$       & Water ballast accumulated via O$_2$ absorption (kg) \\
+$\dot{m}_{H_2}$        & H$_2$ extraction/combustion rate (kg/s) \\
+$\dotmmin$             & Minimum H$_2$ combustion rate for safe stabilization (kg/s) \\
+$\dotmstar$            & Minimax-optimal installed actuator capacity (kg/s) \\
+$\dot{m}_\text{prec}$  & Proactive preconditioning flow rate (kg/s) \\
+$Q_\text{cond}$        & Condenser thermal power (kW) \\
+$r_\text{ef}$          & Effective solar yield (kWh/m$^2$/day) \\
+$T_1$                  & Isothermal lifting gas temperature (K) \\
+$t_\text{anticip}$     & Anticipation time before payload release (s) \\
+$v$                    & Vertical velocity (m/s) \\
+$V_{H_2}$              & Instantaneous volume of hydrogen lifting gas (m$^3$) \\
+$V_\text{eq}$          & Dynamic equilibrium H$_2$ volume (m$^3$) \\
+$\alpha^*$             & Minimax-optimal proactive compensation fraction \\
+$\varepsilon$          & Perturbation index ($m_\text{load}/M_\text{total}$) \\
+$\eta_\text{el}$       & Electrolysis system efficiency \\
+$\eta_\text{gen}$      & Effective generator efficiency \\
+$\zeta$                & Adaptive damping coefficient \\
+\\
+\multicolumn{2}{@{}l}{\textbf{Acronyms}} \\
+COPV  & Composite Overwrapped Pressure Vessel \\
+HALE  & High-Altitude Long-Endurance \\
+PD    & Proportional-Derivative \\
+PEM   & Proton Exchange Membrane \\
+RFC   & Regenerative Fuel Cell \\
+URFC  & Unitized Regenerative Fuel Cell \\
 \end{tabular}
 }
 
@@ -691,6 +786,154 @@ $\zeta$           & Adaptive damping coefficient \\
 \setcounter{section}{0}
 \input{apendice_sections}
 \input{apendice_control}
+
+\section{Expanded Hardware Validation Material}
+\label{app:hardware_expanded}
+
+This appendix expands the subsystem-level data behind Tables~\ref{tab:hardware_validation} and~\ref{tab:mass_envelope} in Section~\ref{sec:combustion}. Bounds are reported in two regimes throughout: the \emph{industrial conservative} regime (commercial off-the-shelf systems) and the \emph{aerospace SOTA 2025} regime (peer-reviewed aviation-grade systems). When the regimes diverge, the per-platform mass envelope of Table~\ref{tab:mass_envelope} reflects the aerospace SOTA bound.
+
+\subsection{PEM Electrolyser --- Mass Breakdown}
+\label{app:pem_bounds}
+
+The PEM electrolyser sustains $44.7$~kg H\textsubscript{2}/day at ${\approx}84$~kW continuous. Table~\ref{tab:pem_bounds} brackets the system mass across three aerospace technology bounds; the NREL industrial cost-modelling envelope (Mayyas 2019) of 100--420~kg frames the upper reference, well above all aerospace SOTA 2025 values.
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{PEM electrolyser mass bounds at 84~kW continuous power (system mass at $\eta = 65$--$80\%$).}
+\label{tab:pem_bounds}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{} l r r p{5cm} @{}}
+\toprule
+\textbf{Bound} & \makecell{\textbf{Mass}\\(kg)} & \makecell{\textbf{Power density}\\(kW/kg)} & \textbf{Technology / Reference} \\
+\midrule
+Optimistic  & $\sim$50  & 2.2       & HyPoint HT-PEM, aviation-grade (incl.\ min.\ BoP 6--22.7\%) \cite{Zhang2025PEMFC,Dotzauer2026AMBER} \\
+Central     & $\sim$85  & 1.0--1.2  & Water-cooled mainstream (incl.\ BoP) \cite{Zhang2025PEMFC,Xue2025PEMAviation} \\
+Pessimistic & $\sim$170 & 0.5       & Air-cooled PEM \cite{Zhang2025PEMFC} \\
+Theoretical & $\sim$30  & 2.77      & NASA Glenn bare stack at 84~kW \cite{Burke2003NASA} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Generator Unit --- Modular Burst-Duty Architecture}
+\label{app:generator_bounds}
+
+The module size of $\sim$1~kg/s is hardware-constrained: Cameretti et al.\ demonstrated 100\% H\textsubscript{2} combustion in a GE90-class chamber at $121$--$150$~MW thermal \cite{Cameretti2025}; at the H\textsubscript{2} lower heating value of $120$~MJ/kg, this corresponds to $1.0$--$1.25$~kg/s per chamber (conservative bound: $1$~kg/s; per-module thermal output: $120$~MW). Table~\ref{tab:gen_bounds} summarises the module mass bounds; the industrial option is excluded as incompatible with burst-duty operation.
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{Generator module mass bounds (burst-duty ${\sim}$30~s/cycle; per-module thermal power 120~MW).}
+\label{tab:gen_bounds}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{} l r p{8cm} @{}}
+\toprule
+\textbf{Bound} & \makecell{\textbf{Module mass}\\(kg/module)} & \textbf{Technology basis / Reference} \\
+\midrule
+Optimistic          & $\sim$250   & APU-class burst-duty: Garrett GTCP 36-300 with micromix combustor (1.6~MW$+$370~kW electric, ${\approx}$150--180~kg) \cite{Funke2022} \\
+Pessimistic         & $\sim$600   & Turbofan continuous-duty fraction: GE90 combustor section ($M_\text{eng} = 8{,}283$~kg total) \\
+Industrial (excl.)  & $\sim$1{,}800 & Stationary turbines (e.g.\ Wärtsilä, MAN) at ${\sim}$15~t/MW thermal --- burst-duty incompatible \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The number of parallel modules per platform is $N = \lceil\dotmstar / 1\,\mathrm{kg/s}\rceil$: $N = 4$ (LZ~129 Hindenburg), $N = 5$ (Flying Whales LCA60T), $N = 6$ (Pathfinder~3), $N = 3$ (Zeppelin~NT, multi-drop $4\times250$~kg).
+
+\subsection{Photovoltaic Array --- Per-Platform Mass}
+\label{app:panel_bounds}
+
+Per-platform panel masses follow from the thin-film amorphous baseline validated for airships \cite{Pande2018}: surface density $120$~g/m\textsuperscript{2} at $\eta = 8\%$, applied to $f_\text{pan} = 0.45$ of the upper-surface area of each platform (Table~\ref{tab:panel_bounds}).
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{Photovoltaic array effective area and mass per platform (thin-film amorphous baseline).}
+\label{tab:panel_bounds}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{} l r r @{}}
+\toprule
+\textbf{Platform} & \makecell{\textbf{Effective PV area}\\(m\textsuperscript{2})} & \makecell{\textbf{Array mass}\\(kg)} \\
+\midrule
+LZ~129 Hindenburg     & 10{,}800 & 1{,}296 \\
+Flying Whales LCA60T  & 10{,}350 & 1{,}242 \\
+Pathfinder~3          &  5{,}850 &   702 \\
+Zeppelin~NT           &  1{,}260 &   151 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Substituting single-junction ($253$~g/m\textsuperscript{2}, $\eta = 24\%$) or triple-junction ($345$~g/m\textsuperscript{2}, $\eta = 32\%$) cells scales the array mass by ${\sim}$2.1$\times$ or ${\sim}$2.9$\times$ respectively and reduces the regeneration cycle duration in inverse proportion to $\eta$.
+
+\subsection{COPV Storage --- Per-Platform Mass}
+\label{app:copv}
+
+Type-IV composite overwrapped pressure vessels (COPV) at 350~bar achieve $5.5\,\mathrm{wt\%}$ gravimetric density (FCEV-grade, DOE/EERE; SAE J2601-2 \cite{SAE2023}), corresponding to $17.2$~kg tank per kg of stored H\textsubscript{2}. The per-cycle H\textsubscript{2} reserve is obtained from the simulation logs (including transient margin) and dictates the tank sizing shown in Table~\ref{tab:copv_bounds}:
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{COPV storage mass derived from per-cycle H\textsubscript{2} reserve (simulation logs).}
+\label{tab:copv_bounds}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{} l r r @{}}
+\toprule
+\textbf{Platform} & \makecell{\textbf{H\textsubscript{2} reserve}\\(kg/cycle)} & \makecell{\textbf{COPV mass}\\(kg)} \\
+\midrule
+LZ~129 Hindenburg     &  96.7 & 1{,}663 \\
+Flying Whales LCA60T  & 104.8 & 1{,}802 \\
+Pathfinder~3          &  28.9 &   497 \\
+Zeppelin~NT           &  33.7 &   580 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{H\textsubscript{2} Compressor --- Mass not Reported in Open Literature}
+\label{app:compressor}
+
+The diaphragm compressor (30--40~bar electrolyser output to 350~bar storage) operates at $\sim$1.86~kg/h flow and $\sim$6~kW input power. Commercial units in this performance envelope include the Hofer Case~2 ($1.8$~kg/h, $0.8\to80.1$~MPa, 11~kW, 2-stage diaphragm; \cite{Giuffrida2025}) and the PDC Machines C-series \cite{Letsios2026}. Due to the proprietary nature of commercial compressor datasheets, mass specifications were estimated using comparable industrial-scale references \cite{Giuffrida2025}. The mass budget applies an engineering estimate of $\sim$100~kg.
+
+\subsection{Envelope and Ballonet Material Compatibility with Hydrogen}
+\label{app:envelope_materials}
+
+Gaseous H\textsubscript{2} at low positive pressures ($\Delta P = 1$--50~mbar) imposes specific material requirements on gas cell and ballonet membranes, owing to hydrogen's small molecular size and consequent permeability through standard flexible materials. The trilayer laminate construction validated on the Zeppelin~NT \cite{Stockbridge2012Airship,Lobner2024Airships} addresses these requirements through a dedicated functional architecture: an outer Tedlar (PVF) film provides UV resistance and environmental protection; a load-bearing woven polyester fabric carries the hoop stresses from the internal pressure margin; and an inner polyurethane (PU) coating constitutes the primary H\textsubscript{2} containment barrier, combining low gas permeability with thermal weldability for continuous seam integrity. This construction has been operational in H\textsubscript{2}-lift airship service and constitutes the material reference for the ballonet system in this study.
+
+\subsection{Note on Regenerative Fuel Cell Consolidation}
+\label{app:rfc_future}
+
+The model treats the electrolyser and the H\textsubscript{2} combustion generator as independent subsystems. Aerospace regenerative fuel-cell (RFC) systems, demonstrated onboard the NASA Helios HALE prototype with energy densities of $\sim$450~Wh/kg and 18.5~kW power output \cite{Shahzad2025URFC}, integrate both functions in a unified stack with round-trip efficiencies of 33--55\% (1990s alkaline, 2003 PEM). An RFC architecture would consolidate the electrolyser and the combustion-derived electrical recovery into a single subsystem, trading mass-budget simplification for additional integration complexity --- a direction left to future work.
+
+\subsection{Consolidated Mass Budget per Subsystem and Platform}
+\label{app:mass_budget_full}
+
+Table~\ref{tab:mass_budget_full} consolidates the contributions of Appendices~\ref{app:pem_bounds}--\ref{app:compressor} into a per-platform, per-subsystem mass budget. Optimistic and pessimistic bounds are taken from the individual sections; their column sums reproduce the totals of Table~\ref{tab:mass_envelope} in Section~\ref{sec:combustion}.
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{Per-subsystem, per-platform mass contributions (kg). Optimistic (opt) and pessimistic (pes) bounds; column sums reproduce Table~\ref{tab:mass_envelope}.}
+\label{tab:mass_budget_full}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{} l rr rr rr rr @{}}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Hindenburg}} & \multicolumn{2}{c}{\textbf{Flying~Whales}} & \multicolumn{2}{c}{\textbf{Pathfinder~3}} & \multicolumn{2}{c}{\textbf{Zeppelin~NT}} \\
+\textbf{Subsystem} & opt & pes & opt & pes & opt & pes & opt & pes \\
+\midrule
+PEM electrolyser            &    50 &   170 &    50 &   170 &    50 &   170 &    50 &   170 \\
+Generator unit ($N$ modules) & 1{,}000 & 2{,}400 & 1{,}250 & 3{,}000 & 1{,}500 & 3{,}600 &   750 & 1{,}800 \\
+Photovoltaic array          & 1{,}296 & 1{,}296 & 1{,}242 & 1{,}242 &   702 &   702 &   151 &   151 \\
+COPV storage                & 1{,}663 & 1{,}663 & 1{,}802 & 1{,}802 &   497 &   497 &   580 &   580 \\
+Condenser                   &    50 &    50 &    50 &    50 &    50 &    50 &    50 &    50 \\
+H\textsubscript{2} compressor &   100 &   100 &   100 &   100 &   100 &   100 &   100 &   100 \\
+Water tank                  &    50 &    50 &    50 &    50 &    50 &    50 &    50 &    50 \\
+Ballonets \& piping         &    80 &    80 &    80 &    80 &    80 &    80 &    80 &    80 \\
+Manifold \& minor systems   &    20 &    20 &    20 &    20 &    20 &    20 &    20 &    20 \\
+\midrule
+\textbf{Total}              & \textbf{4{,}309} & \textbf{5{,}829} & \textbf{4{,}644} & \textbf{6{,}514} & \textbf{3{,}049} & \textbf{5{,}269} & \textbf{1{,}831} & \textbf{3{,}001} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The number of generator modules is $N = 4, 5, 6, 3$ for the LZ~129 Hindenburg, Flying Whales LCA60T, Pathfinder~3, and Zeppelin~NT (multi-drop $4\times250$~kg) respectively, derived from $N = \dotmstar / 1\,\mathrm{kg/s}$ (Appendix~\ref{app:generator_bounds}). Only the PEM electrolyser and the generator unit are reported with two bounds; the remaining subsystems are treated as single-valued contributions in this consolidation, with their individual ranges discussed in Appendices~\ref{app:panel_bounds}--\ref{app:compressor} and in the narrative of Section~\ref{sec:combustion} (condenser 30--76~kg range; compressor $\sim$100~kg engineering estimate).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % FASE 6: bibliografía reordenada por primera aparición en texto (MDPI req.)
@@ -714,17 +957,35 @@ $\zeta$           & Adaptive damping coefficient \\
 \bibitem{SAE2023} SAE International. \textit{Fueling Protocols for Medium and Heavy Duty Gaseous Hydrogen Surface Vehicles (SAE J2601-2)}; SAE International: Warrendale, PA, USA, 2023.
 \bibitem{ref9} Verhelst, S.; Wallner, T. Hydrogen-fueled internal combustion engines. \textit{Prog. Energy Combust. Sci.} \textbf{2009}, \textit{35}(6), 490--527. \url{https://doi.org/10.1016/j.pecs.2009.08.001}
 \bibitem{ref10} IRENA. \textit{Green Hydrogen Cost Reduction: Scaling up Electrolysers to Meet the 1.5°C Climate Goal}. International Renewable Energy Agency, Abu Dhabi, 2020.
-\bibitem{Buttler2018} Buttler, A.; Spliethoff, H. Current status of water electrolysis for energy storage, grid balancing and sector coupling via power-to-gas and power-to-liquids: A review. \textit{Renew. Sustain. Energy Rev.} \textbf{2018}, \textit{82}, 2440--2454. \url{https://doi.org/10.1016/j.rser.2017.09.003}
-\bibitem{Falcao2020} Falcão, D.S.; Pinto, A.M.F.R. A review on PEM electrolyzer modelling: Guidelines for beginners. \textit{J. Clean. Prod.} \textbf{2020}, \textit{261}, 121184. \url{https://doi.org/10.1016/j.jclepro.2020.121184}
+\bibitem{Buttler2018} Buttler, A.; Spliethoff, H. Current status of water electrolysis for energy storage, grid balancing and sector coupling via power-to-gas and power-to-liquids: a review. \textit{Renew. Sustain. Energy Rev.} \textbf{2018}, \textit{82}, 2440--2454. \url{https://doi.org/10.1016/j.rser.2017.09.003}
+\bibitem{Falcao2020} Falcão, D.S.; Pinto, A.M.F.R. A review on PEM electrolyzer modelling: guidelines for beginners. \textit{J. Clean. Prod.} \textbf{2020}, \textit{261}, 121184. \url{https://doi.org/10.1016/j.jclepro.2020.121184}
 \bibitem{SENAMHI2003} SENAMHI; MINEM. \textit{Atlas de Energía Solar del Perú}; SENAMHI: Lima, Peru, 2003. [Online]. \url{https://www.senamhi.gob.pe/pdf/Atlas%20_de_Radiacion_Solar.pdf} [Accessed: 13 June 2026].
 \bibitem{Gao2024} Gao, X.; Hou, Z.; Zhu, X.; Chen, X. Configuration optimization of PV array for stratospheric airship under nonuniform radiation condition. \textit{Aerosp. Sci. Technol.} \textbf{2024}, \textit{154}, 109538. \url{https://doi.org/10.1016/j.ast.2024.109538}
 \bibitem{Azinheira2016} Moutinho, A.; Azinheira, J.R.; de Paiva, E.C.; Bueno, S.S. Airship robust path-tracking: A tutorial on airship modelling and gain-scheduling control design. \textit{Control Eng. Pract.} \textbf{2016}, \textit{50}, 22--36. \url{https://doi.org/10.1016/j.conengprac.2016.02.009}
 \bibitem{Wu2013} Wu, X.; Moog, C.H.; Márquez-Martínez, L.A.; Hu, Y. Full model of a buoyancy-driven airship and its control in the vertical plane. \textit{Aerosp. Sci. Technol.} \textbf{2013}, \textit{26}(1), 138--152. \url{https://doi.org/10.1016/j.ast.2012.02.022}
 \bibitem{Zhang2019} Zhang, L.; Li, J.; Jiang, Y.; Du, H.; Zhu, W.; Lv, M. Analysis of attitude planning and energy balance of stratospheric airship. \textit{Energy} \textbf{2019}, \textit{183}, 1089--1103. \url{https://doi.org/10.1016/j.energy.2019.07.002}
 \bibitem{Hesselgreaves2016} Hesselgreaves, J.E.; Law, R.; Reay, D. \textit{Compact Heat Exchangers: Selection, Design and Operation}, 2nd ed.; Elsevier Butterworth-Heinemann: Oxford, UK, 2016; ISBN 9780081003053.
-\bibitem{ref11} NASA. \textit{SLS (Space Launch System) RS-25 Core Stage Engine}. NASA Marshall Space Flight Center. [Online]. \url{https://www.nasa.gov/reference/space-launch-system-rs-25-core-stage-engine/} [Accessed: 13 June 2026].
-\bibitem{Najjar2013} Najjar, Y.S.H. Hydrogen safety: The road toward green technology. \textit{Int. J. Hydrogen Energy} \textbf{2013}, \textit{38}(25), 10716--10728. \url{https://doi.org/10.1016/j.ijhydene.2013.05.126}
+\bibitem{Najjar2013} Najjar, Y.S.H. Hydrogen safety: the road toward green technology. \textit{Int. J. Hydrogen Energy} \textbf{2013}, \textit{38}(25), 10716--10728. \url{https://doi.org/10.1016/j.ijhydene.2013.05.126}
 \bibitem{Turns2011} Turns, S.R. \textit{An Introduction to Combustion: Concepts and Applications}, 3rd ed.; McGraw-Hill: New York, NY, USA, 2011.
+\bibitem{Zhang2025PEMFC} Zhang, X.; Yue, H.; Zheng, H.; Tan, L.; Zhang, Z.; Li, F. Proton exchange membrane fuel cells for aircraft applications: a comprehensive review of key challenges and development trends. \textit{Hydrogen} \textbf{2025}, \textit{6}(4), 116. \url{https://doi.org/10.3390/hydrogen6040116}
+\bibitem{Cameretti2025} Cameretti, M.C.; Cappiello, A.; De Robbio, R.; Tuccillo, R. Numerical investigation of hydrogen combustion in a GE90-class turbofan combustor. \textit{Aerospace} \textbf{2025}, \textit{12}(3), 231. \url{https://doi.org/10.3390/aerospace12030231}
+\bibitem{Pande2018} Pande, D.; Verstraete, D. Impact of solar cell characteristics and operating conditions on the sizing of a solar powered nonrigid airship. \textit{Aerosp. Sci. Technol.} \textbf{2018}, \textit{72}, 353--363. \url{https://doi.org/10.1016/j.ast.2017.11.013}
+\bibitem{Letsios2026} Letsios, V.; Cabrera, P.; Zarogiannis, P.; Sun, Y.; Sundén, B. Hydrogen compression: a comprehensive review of compressor technologies for hydrogen refuelling stations. \textit{Hydrogen} \textbf{2026}, \textit{7}(1), 25. \url{https://doi.org/10.3390/hydrogen7010025}
+\bibitem{Giacomazzi2023} Giacomazzi, E.; Troiani, G.; Di Nardo, A.; Calchetti, G.; Cecere, D.; Messina, G.; Carpenella, S. Hydrogen combustion: features and barriers to its exploitation in the energy transition. \textit{Energies} \textbf{2023}, \textit{16}(20), 7174. \url{https://doi.org/10.3390/en16207174}
+\bibitem{Shahzad2025URFC} Shahzad, A.; Jiang, H.J.; Aguey-Zinsou, K.-F. Unitized regenerative fuel cells: fundamental challenges and advancements. \textit{Renew. Sustain. Energy Rev.} \textbf{2025}, \textit{215}, 115631. \url{https://doi.org/10.1016/j.rser.2025.115631}
+\bibitem{Stockbridge2012Airship} Stockbridge, C.; Ceruti, A.; Marzocca, P. Airship research and development in the areas of design, structures, dynamics and energy systems. \textit{Int. J. Aeronaut. Space Sci.} \textbf{2012}, \textit{13}(2), 170--187. \url{https://doi.org/10.5139/IJASS.2012.13.2.170}
+\bibitem{Funke2022} Funke, H.H.-W.; Beckmann, N. Flexible fuel operation of a dry-low-NOx micromix combustor with variable H$_2$/CH$_4$ mixtures. \textit{Int. J. Gas Turbine Propul. Power Syst.} \textbf{2022}, \textit{13}(2), 1--15.
+\bibitem{Burke2003NASA} Burke, K.A. \textit{Fuel Cells for Space Science Applications}; NASA Technical Memorandum NASA/TM-2003-212730, AIAA-2003-5938; NASA Glenn Research Center: Cleveland, OH, USA, 2003. \url{https://ntrs.nasa.gov/citations/20040010319}
+\bibitem{Dotzauer2026AMBER} Dotzauer, N.A. Controlling a dynamic fuel cell system for the propulsion of a regional aircraft. \textit{Eng. Proc.} \textbf{2026}, \textit{133}(1), 75. \url{https://doi.org/10.3390/engproc2026133075}
+\bibitem{Xue2025PEMAviation} Xue, Y.; Alnajideen, M.; Navaratne, R. Evolution of proton exchange membrane fuel cell technology for aviation applications: a review. \textit{Energy Fuels} \textbf{2025}, \textit{39}, 22839--22887. \url{https://doi.org/10.1021/acs.energyfuels.5c03463}
+\bibitem{Kohout2003FuelCell} Kohout, L.L.; Schmitz, P.C. \textit{Fuel Cell Propulsion Systems for an All-Electric Personal Air Vehicle}; NASA Technical Memorandum NASA/TM-2003-212354, AIAA-2003-2867; NASA Glenn Research Center: Cleveland, OH, USA, 2003. \url{https://ntrs.nasa.gov/citations/20030062089}
+\bibitem{Boretti2020H2ICE} Boretti, A. Hydrogen internal combustion engines to 2030. \textit{Int. J. Hydrogen Energy} \textbf{2020}, \textit{45}(43), 23692--23703. \url{https://doi.org/10.1016/j.ijhydene.2020.06.022}
+\bibitem{Stepien2021} Stępień, Z. A comprehensive overview of hydrogen-fueled internal combustion engines: achievements and future challenges. \textit{Energies} \textbf{2021}, \textit{14}(20), 6504. \url{https://doi.org/10.3390/en14206504}
+\bibitem{Wrobel2022} Wróbel, K.; Wróbel, J.; Tokarz, W.; Lach, J.; Podsadni, K.; Czerwiński, A. Hydrogen internal combustion engine vehicles: a review. \textit{Energies} \textbf{2022}, \textit{15}(23), 8937. \url{https://doi.org/10.3390/en15238937}
+\bibitem{Giuffrida2025} Giuffrida, A.; Colbertaldo, P. Overview of diaphragm compressors for hydrogen applications. \textit{J. Energy Storage} \textbf{2025}, \textit{129}, 117286. \url{https://doi.org/10.1016/j.est.2025.117286}
+\bibitem{Chalkiadakis2023} Chalkiadakis, N.; Stylos, N.; Karras, S.; Tsoutsos, T. Review of hydrogen compression methods for hydrogen refuelling stations. In \textit{Hydrogen Production and Energy Transition}; Wiley: 2023; Chapter 3. \url{https://doi.org/10.1002/9781394107355.ch3}
+\bibitem{Esmaeili2023PEM} Esmaeili, N.; Edalat, M.; Zekri, J. Parametric study and electrocatalyst of PEM electrolysis performance. \textit{PMC} \textbf{2023}, 9921346. \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC9921346/}
+\bibitem{Lobner2024Airships} Lobner, P. \textit{Modern Airships --- Part 1}, Revision 6; Technical compendium, 17 March 2024. \url{https://lynceans.org/wp-content/uploads/2024/05/Part-1_main-body_R6_17Mar2024.pdf}
 \end{thebibliography}
 
 \end{document}
