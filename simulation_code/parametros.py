@@ -123,13 +123,18 @@ t_post_liberacion = 400    # [s]   Duración de la sim. después de liberar la c
 # ENERGÍA SOLAR — modelo paramétrico (dos parámetros)
 # =============================================================================
 
-rendimiento_efectivo = 2.0    # [kWh/m²/día]  HSP·η_panel·(1-pérdidas_sistema)
+rendimiento_efectivo = 2.0    # [kWh/m²/día]  GHI ajustado por nubosidad (Lima, costa)
                                # Desfavorable (invierno, Lima): ~1.2
                                # Medio (Lima):                  ~2.0
                                # Favorable (verano, Lima):      ~2.8
+                               # NOTA: es irradiancia solar bruta, NO incluye η_panel
 
 A_paneles_fraccion   = 0.45   # [—]   Fracción del área superficial cubierta con paneles
                                # Rango típico: 0.30 – 0.60
+
+eta_panel            = 0.20   # [—]   Eficiencia de conversión del panel fotovoltaico
+                               # CIGS thin-film aeroespacial: 0.17–0.22
+                               # Amorfos Si (Pande 2018):    0.07–0.10
 
 
 # =============================================================================

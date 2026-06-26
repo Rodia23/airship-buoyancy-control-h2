@@ -98,7 +98,7 @@ platforms = [
 print("  Solar regeneration (Lima, 2.0 kWh/m2/day, target = Scenario B):")
 print(f"  {'Platform':<20} {'reg(kg/d)':>10} {'days':>8} {'hours':>8}")
 for name, A_total in platforms:
-    reg  = 2.0 * 0.45 * A_total * p.eta_electrolisis / p.E_H2_electrolisis
+    reg  = 2.0 * p.eta_panel * 0.45 * A_total / p.E_H2_electrolisis
     days = mB / reg
     print(f"  {name:<20} {reg:>10.0f} {days:>8.2f} {days*24:>8.1f}")
 
