@@ -112,7 +112,7 @@ The mass of hydrogen that must be burned to neutralize a payload $m_{\text{load}
   \Delta m_{\text{pre}}^* = \frac{m_{\text{load}}}{L_{\text{eff}}}
 \end{equation}
 
-Setting $t_{\text{anticip}} = \tau \cdot t_{\max}$ and equating to $\Delta m_{\text{pre}}^*$, then cubing and solving for $D_{\max}^*$:
+Setting $t_{\text{anticip}} = \tau \cdot t_{\max}$, with $\tau = 1$ (full available anticipation window adopted throughout), and equating to $\Delta m_{\text{pre}}^*$, then cubing and solving for $D_{\max}^*$:
 
 \begin{equation}
   \boxed{D_{\max}^* = \frac{m_{\text{load}}^3 \cdot g}{6 \cdot M_{\text{total}} \cdot L_{\text{eff}}^2 \cdot \eta^2 \cdot \dot{m}_{\text{max}}^2 \cdot \tau^3}}
@@ -137,18 +137,18 @@ Dividing the expression for $\Delta m_{\text{pre}}$ at arbitrary depth $D_{\max}
 \subsection{Minimum Flow Requirement for Viability}
 \label{appx:mmin_viability}
 
-If the operational sinking is limited to $D_{\text{limit}}$ and a target compensation $\alpha_{\text{target}}$ is required, substituting $D_{\text{limit}} = \alpha_{\text{target}}^3 \cdot D_{\max}^*$ into the expression for $D_{\max}^*$ and solving for $\dot{m}_{\text{max}}$:
+If the operational sinking is limited to $D_{\text{lim}}$ and a target compensation $\alpha_{\text{target}}$ is required, substituting $D_{\text{lim}} = \alpha_{\text{target}}^3 \cdot D_{\max}^*$ into the expression for $D_{\max}^*$ and solving for $\dot{m}_{\text{max}}$:
 
 \begin{equation}
-  \boxed{\dot{m}_{\text{min}} = \frac{m_{\text{load}}^{3/2} \cdot g^{1/2} \cdot \alpha_{\text{target}}^{3/2}}{\sqrt{6 \cdot M_{\text{total}} \cdot L_{\text{eff}}^2 \cdot D_{\text{limit}}} \cdot \eta \cdot \tau^{3/2}}}
+  \boxed{\dot{m}_{\text{min}} = \frac{m_{\text{load}}^{3/2} \cdot g^{1/2} \cdot \alpha_{\text{target}}^{3/2}}{\sqrt{6 \cdot M_{\text{total}} \cdot L_{\text{eff}}^2 \cdot D_{\text{lim}}} \cdot \eta \cdot \tau^{3/2}}}
 \end{equation}
 
 For perfect compensation ($\alpha_{\text{target}} = 1$):
 \begin{equation}
-  \boxed{\dot{m}_{\text{min}}^{\text{pre-comp}} = \frac{m_{\text{load}}^{3/2} \cdot \sqrt{g}}{\eta \cdot \tau^{3/2} \cdot \sqrt{6 \cdot M_{\text{total}} \cdot L_{\text{eff}}^2 \cdot D_{\text{limit}}}}}
+  \boxed{\dot{m}_{\text{min}}^{\text{pre-comp}} = \frac{m_{\text{load}}^{3/2} \cdot \sqrt{g}}{\eta \cdot \tau^{3/2} \cdot \sqrt{6 \cdot M_{\text{total}} \cdot L_{\text{eff}}^2 \cdot D_{\text{lim}}}}}
 \end{equation}
 
-\textbf{Key result}: for a fixed operational sinking limit $D_{\text{limit}}$, the minimum required flow scales inversely with the square root of the total inertial mass, recovering the scaling paradox of Eq.~\eqref{eq:mmin_final}:
+\textbf{Key result}: for a fixed operational sinking limit $D_{\text{lim}}$, the minimum required flow scales inversely with the square root of the total inertial mass, recovering the scaling paradox of Eq.~\eqref{eq:mmin_final}:
 \begin{equation}
   \dot{m}_{\text{min}} \propto \frac{m_{\text{load}}^{3/2}}{\sqrt{M_{\text{total}}}}
 \end{equation}
@@ -165,7 +165,7 @@ Since both the proactive preconditioning and the reactive post-drop stabilizatio
 
 The minimum occurs at the intersection $\dot{m}_{\text{pre}}(\alpha^*) = \dot{m}_{\text{post}}(\alpha^*)$. Introducing the non-dimensional system constant:
 \begin{equation}
-  C = \frac{\dot{m}_{\text{post},0} \cdot \eta \cdot \tau^{3/2} \cdot \sqrt{6 \cdot M_{\text{total}} \cdot L_{\text{eff}}^2 \cdot D_{\text{limit}}}}{m_{\text{load}}^{3/2} \cdot \sqrt{g}}
+  C = \frac{\dot{m}_{\text{post},0} \cdot \eta \cdot \tau^{3/2} \cdot \sqrt{6 \cdot M_{\text{total}} \cdot L_{\text{eff}}^2 \cdot D_{\text{lim}}}}{m_{\text{load}}^{3/2} \cdot \sqrt{g}}
 \end{equation}
 
 the change of variables $x = \sqrt{\alpha^*}$ transforms the fixed-point equation into the cubic $x^3 + C x^2 - C = 0$, which has exactly one strictly positive real root by Descartes' Rule of Signs. The exact closed-form solution depends on the discriminant $\Delta = C^2/4 - C^4/27$:
